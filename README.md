@@ -33,7 +33,7 @@
 
 ---
 
-## 🛠️ Stack Technologique
+## Stack Technologique
 
 ### 💻 **Langages de Programmation**
 <div align="center">
