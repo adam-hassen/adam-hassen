@@ -89,7 +89,7 @@
 
 ---
 
-## 📊 GitHub Analytics Animés
+## GitHub Analytics Animés
 
 <div align="center">
 
@@ -111,14 +111,3 @@
 
 ---
 
-## 🎯 Projets Stars
-
-### 🤖 **Crypto Due Diligence AI**
-```python
-class CryptoAnalyzer:
-    def __init__(self):
-        self.tech = ["Python", "Dash", "Mistral-7B", "ML"]
-        self.features = ["Real-time Analysis", "AI Q&A", "Predictive Models"]
-    
-    def analyze(self):
-        return "🚀 Revolutionizing crypto analysis with AI" 
