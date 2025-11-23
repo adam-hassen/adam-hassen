@@ -1,106 +1,53 @@
-<!-- Header Animé -->
+<!-- BANNIÈRE ANIMÉE -->
 <div align="center">
+
+<!-- Bannière avec ton nom qui clignote -->
+<h1 align="center">
+  <img src="https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=35&duration=4000&pause=1000&color=27F7B6&center=true&vCenter=true&width=435&lines=✨+Adam+Hassen+✨" alt="Adam Hassen" />
+</h1>
+
+<!-- Sous-titre animé -->
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=500&color=FF6B6B&center=true&vCenter=true&width=435&lines=🚀+ÉTUDIANT+EN+INGÉNIERIE+INFORMATIQUE;🎯+Data+Science+%26+Interaction+Personnes-Systèmes;💫+5ᵉ+Année+Cycle+Ingénieur" alt="Typing SVG" />
+
+<!-- Badges animés -->
+<p align="center">
+  <img src="https://img.shields.io/badge/🌟-EXPÉRIENCES_PROFESSIONNELLES-FFD700?style=for-the-badge&logo=stars&logoColor=white" />
+  <img src="https://img.shields.io/badge/🎓-FORMATIONS-9C27B0?style=for-the-badge&logo=graduation-cap&logoColor=white" />
+  <img src="https://img.shields.io/badge/💻-INGÉNIEUR_INFORMATIQUE-27F7B6?style=for-the-badge&logo=computer&logoColor=black" />
+</p>
+
+<!-- Animation GitHub -->
+<div align="center">
+  <img src="https://github.com/Adam-Hassen/Adam-Hassen/blob/output/github-contribution-grid-snake.svg" alt="snake animation" />
+</div>
+
+</div>
+
+---
+
+## 🎯 **PROFIL DYNAMIQUE**
+
+```javascript
+// 🚀 PROFIL INGÉNIEUR EN MOUVEMENT
+class AdamHassen {
+  constructor() {
+    this.nom = "Adam Hassen";
+    this.statut = "Étudiant en 5ᵉ année Ingénieur Informatique";
+    this.ecoles = {
+      ESPRIT: "🎯 Data Science & Intelligence Artificielle",
+      ENSIM: "👥 Interaction Personnes-Systèmes (IPS)"
+    };
+    this.objectif = "Devenir Architecte Solutions Full-Stack & IA";
+  }
   
-![MasterHead](https://github.com/Adam-Hassen/Adam-Hassen/blob/main/github-header-image.png)
-  
-# 🎯 Adam Hassen 
-**💫 Double Diplôme Ingénieur Informatique | Data Science & IA**
+  async evoluer() {
+    while(true) {
+      await this.apprendre();
+      await this.innover();
+      await this.partager();
+    }
+  }
+}
 
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&duration=4000&pause=1000&color=27F7B6&center=true&vCenter=true&width=435&lines=Data+Science+Enthusiast;Full-Stack+Developer;AI+%26+ML+Learner;Problem+Solver" alt="Typing SVG" />
-
-![GitHub Views](https://komarev.com/ghpvc/?username=adam-hassen&color=blueviolet&style=for-the-badge)
-![GitHub Followers](https://img.shields.io/github/followers/adam-hassen?label=Follow&style=social&color=red)
-
-</div>
-
----
-
-## 🛠️ Stack Technologique
-
-### 💻 **Langages de Programmation**
-<div align="center">
-
-![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white&labelColor=black)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white&labelColor=black)
-![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white&labelColor=black)
-![C](https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=black&labelColor=gray)
-![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white&labelColor=black)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&labelColor=black)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white&labelColor=black)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white&labelColor=black)
-![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white&labelColor=black)
-![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white&labelColor=black)
-
-</div>
-
-### 🚀 **Frameworks & Plateformes**
-<div align="center">
-
-![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white&labelColor=black)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white&labelColor=black)
-![Symfony](https://img.shields.io/badge/Symfony-000000?style=for-the-badge&logo=symfony&logoColor=white&labelColor=black)
-![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white&labelColor=black)
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white&labelColor=black)
-![FlutterFlow](https://img.shields.io/badge/FlutterFlow-02569B?style=for-the-badge&logo=flutter&logoColor=white&labelColor=black)
-
-</div>
-
-### 🗄️ **Bases de Données & DevOps**
-<div align="center">
-
-![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white&labelColor=black)
-![PL/SQL](https://img.shields.io/badge/PL/SQL-F80000?style=for-the-badge&logo=oracle&logoColor=white&labelColor=black)
-![MLOps](https://img.shields.io/badge/MLOps-FF6F00?style=for-the-badge&logo=kubernetes&logoColor=white&labelColor=black)
-![Cisco](https://img.shields.io/badge/Cisco-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white&labelColor=black)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white&labelColor=black)
-
-</div>
-
-### 🎯 **Outils & Microsoft**
-<div align="center">
-
-![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black&labelColor=white)
-![DAX](https://img.shields.io/badge/DAX-F2C811?style=for-the-badge&logo=powerbi&logoColor=black&labelColor=white)
-![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white&labelColor=green)
-![Word](https://img.shields.io/badge/Word-2B579A?style=for-the-badge&logo=microsoftword&logoColor=white&labelColor=blue)
-![PowerPoint](https://img.shields.io/badge/PowerPoint-B7472A?style=for-the-badge&logo=microsoftpowerpoint&logoColor=white&labelColor=red)
-![Outlook](https://img.shields.io/badge/Outlook-0078D4?style=for-the-badge&logo=microsoftoutlook&logoColor=white&labelColor=blue)
-![Scrum](https://img.shields.io/badge/Scrum-6DB33F?style=for-the-badge&logo=scrum&logoColor=white&labelColor=black)
-
-</div>
-
----
-
-## 📊 GitHub Analytics Animés
-
-<div align="center">
-
-<!-- GitHub Stats avec thème dark -->
-<a href="https://github.com/adam-hassen">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=adam-hassen&show_icons=true&theme=radical&hide_border=true&include_all_commits=true&count_private=true&bg_color=0D1117&title_color=27F7B6&icon_color=27F7B6" />
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=adam-hassen&layout=compact&theme=radical&hide_border=true&bg_color=0D1117&title_color=27F7B6&text_color=FFFFFF" />
-</a>
-
-<!-- Streak Stats avec animation -->
-<a href="https://git.io/streak-stats">
-  <img height="180em" src="https://streak-stats.demolab.com?user=adam-hassen&theme=radical&hide_border=true&background=0D1117&fire=27F7B6&ring=27F7B6&currStreakLabel=27F7B6" />
-</a>
-
-<!-- Graph d'activité animé -->
-[![Ashutosh's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=adam-hassen&bg_color=0D1117&color=27F7B6&line=27F7B6&point=FFFFFF&area=true&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
-
-</div>
-
----
-
-## 🎯 Projets Stars
-
-### 🤖 **Crypto Due Diligence AI**
-```python
-class CryptoAnalyzer:
-    def __init__(self):
-        self.tech = ["Python", "Dash", "Mistral-7B", "ML"]
-        self.features = ["Real-time Analysis", "AI Q&A", "Predictive Models"]
-    
-    def analyze(self):
-        return "🚀 Revolutionizing crypto analysis with AI"
+const moi = new AdamHassen();
+moi.evoluer(); // 🚀 Lancement de la carrière !
