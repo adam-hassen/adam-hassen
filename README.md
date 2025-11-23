@@ -7,7 +7,7 @@
 </h1>
 
 <!-- Titre animé -->
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=FF6B6B&center=true&vCenter=true&width=600&lines=🎓+ÉTUDIANT+EN+INGÉNIERIE+INFORMATIQUE" alt="Typing SVG" />
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=FF6B6B&center=true&vCenter=true&width=600&lines=🎓+ÉTUDIANT+EN+INGÉNIERIE+INFORMATIQUE " alt="Typing SVG" />
 
 <!-- Sous-titre double animation -->
 <div align="center">
