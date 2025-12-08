@@ -3,7 +3,7 @@
 
 <!-- Nom principal avec effet néon -->
 <h1 align="center">
-  <img src="https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=35&duration=4000&pause=1000&color=27F7B6&center=true&vCenter=true&width=500&lines=✨+Adam+Hassen+✨" alt="Adam Hassen" />
+  <img src="https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=35&duration=4000&pause=1000&color=27F7B6&center=true&vCenter=true&width=500&lines=Adam+Hassen" alt="Adam Hassen" />
 </h1>
 
 <!-- Titre animé -->
