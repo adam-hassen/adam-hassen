@@ -12,14 +12,14 @@
 <!-- Sous-titre double animation -->
 <div align="center">
   
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&duration=4000&pause=500&color=3498DB&center=true&vCenter=true&width=800&lines=🏫+5ᵉ+Année+Cycle+Ingénieur+à+ESPRIT+%26+ENSIM;🤖+Data+Science+%7C+👥+Interaction+Personnes-Systèmes" alt="Typing SVG" />
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&duration=4000&pause=500&color=3498DB&center=true&vCenter=true&width=800&lines=+5ᵉ+Année+Cycle+Ingénieur+à+ESPRIT+%26+ENSIM;+Data+Science+%7C++Interaction+Personnes-Systèmes" alt="Typing SVG" />
 
 </div>
 
 <!-- Badges animés -->
 <p align="center">
-  <img src="https://img.shields.io/badge/🌟-Double_Diplôme-FFD700?style=for-the-badge&logo=stars&logoColor=black" />
-  <img src="https://img.shields.io/badge/🚀-Ingénieur_Informatique-27F7B6?style=for-the-badge&logo=rocket&logoColor=black" />
+  <img src="https://img.shields.io/badge/-Double_Diplôme-FFD700?style=for-the-badge&logo=stars&logoColor=black" />
+  <img src="https://img.shields.io/badge/-Ingénieur_Informatique-27F7B6?style=for-the-badge&logo=rocket&logoColor=black" />
   <img src="https://img.shields.io/badge/💻-Full_Stack_Developer-FF6B6B?style=for-the-badge&logo=computer&logoColor=white" />
 </p>
 
@@ -35,7 +35,7 @@
 
 ## Stack Technologique
 
-### 💻 **Langages de Programmation**
+###  **Langages de Programmation**
 <div align="center">
 
 ![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white&labelColor=black)
@@ -51,7 +51,7 @@
 
 </div>
 
-### 🚀 **Frameworks & Plateformes**
+###  **Frameworks & Plateformes**
 <div align="center">
 
 ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white&labelColor=black)
@@ -63,7 +63,7 @@
 
 </div>
 
-### 🗄️ **Bases de Données & DevOps**
+###  **Bases de Données & DevOps**
 <div align="center">
 
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white&labelColor=black)
@@ -74,7 +74,7 @@
 
 </div>
 
-### 🎯 **Outils & Microsoft**
+###  **Outils & Microsoft**
 <div align="center">
 
 ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black&labelColor=white)
