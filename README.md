@@ -11,7 +11,7 @@
 ## À propos
 
 <p align="center">
-  <img src="./assets/about.png" width="100%" alt="À propos d'Adam Hassen"/>
+  <img src="./assets/about.svg" width="100%" alt="À propos d'Adam Hassen"/>
 </p>
 
 ## Projets phares
@@ -32,6 +32,16 @@
 </p>
 <p align="center">
   <img src="./assets/stack.svg" width="100%" alt="Stack technique détaillée"/>
+</p>
+
+## Statistiques GitHub
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-chiffres.svg" width="100%" alt="Statistiques GitHub en chiffres"/>
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-langages.svg" width="49%" alt="Langages les plus utilisés"/>
+  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-activite.svg" width="49%" alt="Activité mensuelle"/>
 </p>
 
 ## Mes contributions
