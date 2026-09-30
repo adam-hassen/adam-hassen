@@ -11,7 +11,7 @@
 ## À propos
 
 <p align="center">
-  <img src="./assets/about.svg" width="100%" alt="À propos d'Adam Hassen"/>
+  <img src="./assets/about.png" width="100%" alt="À propos d'Adam Hassen"/>
 </p>
 
 ## Projets phares
