@@ -10,26 +10,9 @@
 
 ## À propos
 
-```python
-class AdamHassen:
-    ecoles = [
-        "ESPRIT · Data Science",
-        "ENSIM · Interaction Personnes-Systèmes",
-    ]
-    en_ce_moment = "IA appliquée à l'assurance"
-    stack_du_moment = ["LLMs locaux", "RAG", "Machine Learning"]
-    recherche = "Stage de fin d'études en Data & IA"
-    interets = [
-        "RAG",
-        "évaluation de LLMs",
-        "séries temporelles",
-        "qualité des données",
-    ]
-    base = "Le Mans · mobile partout en France"
-
-    def philosophie(self):
-        return "Un modèle ne vaut que ce que valent ses données."
-```
+<p align="center">
+  <img src="./assets/about.svg" width="100%" alt="À propos d'Adam Hassen"/>
+</p>
 
 ## Projets phares
 
