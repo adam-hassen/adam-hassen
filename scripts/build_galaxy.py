@@ -135,57 +135,23 @@ def hero(avatar_b64):
     cx, cy = 600, 196
     roles = [
         "Élève ingénieur · double diplôme ESPRIT × ENSIM",
-        "Data Science, LLM locaux et RAG",
-        "Interaction Personnes-Systèmes (IHM)",
-        "Je cherche mon stage de fin d'études en Data & IA",
+        "Data Science, machine learning et NLP",
+        "LLM locaux, RAG et IA générative",
+        "Interfaces pensées pour les humains (IHM)",
     ]
-    slot, size = 5.0, 19
-    cw = size * 0.602
+    slot = 4.0
     total = slot * len(roles)
-    # effet machine à écrire : la largeur du masque avance par pas
-    typing = []
-    caret_vals, caret_kt = [], []
-    for i, r in enumerate(roles):
-        n = len(r)
-        tw = n * cw
-        x0 = cx - tw / 2
-        vals, kts = [], []
-        steps = 24
-        def T(s):
-            return (i * slot + s) / total
-        vals.append(0); kts.append(0.0)
-        if i:
-            vals.append(0); kts.append(T(0))
-        for s in range(1, steps + 1):
-            vals.append(tw * s / steps); kts.append(T(1.6 * s / steps))
-        vals.append(tw); kts.append(T(4.2))
-        for s in range(1, 7):
-            vals.append(tw * (1 - s / 6)); kts.append(T(4.2 + 0.5 * s / 6))
-        if kts[-1] < 1:
-            vals.append(0); kts.append(1.0)
-        V = ";".join(f"{v:.0f}" for v in vals)
-        K = ";".join(f"{k:.4f}" for k in kts)
-        typing.append(
-            f'<clipPath id="c{i}"><rect x="{x0:.0f}" y="350" width="0" height="34">'
-            f'<animate attributeName="width" dur="{total}s" repeatCount="indefinite" calcMode="discrete" values="{V}" keyTimes="{K}"/>'
-            f'</rect></clipPath>')
-        caret_vals.append((x0, vals, kts))
-    clip_defs = "".join(typing)
+    # rotation des accroches en CSS pur (les masques SMIL ne marchent pas partout, ex. Safari)
+    pa, pb, pc = 0.6 / total * 100, (slot - 0.6) / total * 100, slot / total * 100
+    roles_css = (f"@keyframes rot{{0%{{opacity:0;transform:translateY(10px)}}{pa:.1f}%,{pb:.1f}%{{opacity:1;transform:none}}"
+                 f"{pc:.1f}%,100%{{opacity:0;transform:translateY(-10px)}}}}"
+                 f".role{{opacity:0;animation:rot {total}s cubic-bezier(.2,.7,.2,1) infinite}}")
     texts = "".join(
-        f'<text clip-path="url(#c{i})" x="{cx}" y="374" text-anchor="middle" font-family="{MONO}" font-size="{size}" fill="#B9C3FF">{e(r)}</text>'
+        f'<text class="role" style="animation-delay:{i*slot}s" x="{cx}" y="374" text-anchor="middle" '
+        f'font-family="{SANS}" font-size="21" fill="#C3CBFF">{e(r)}</text>'
         for i, r in enumerate(roles))
-    # curseur : suit la fin du texte de chaque phrase
-    cv, ck = [], []
-    for i, (x0, vals, kts) in enumerate(caret_vals):
-        lo, hi = i * slot / total, (i + 1) * slot / total
-        for v, k in zip(vals, kts):
-            if lo <= k < hi and (not ck or k > ck[-1]):
-                cv.append(x0 + v); ck.append(k)
-    cv.append(cv[0]); ck.append(1.0)
-    ck[0] = 0.0
-    caret = (f'<rect x="{cv[0]:.0f}" y="356" width="2" height="23" fill="{INDIGO}" class="blink">'
-             f'<animate attributeName="x" dur="{total}s" repeatCount="indefinite" calcMode="discrete" '
-             f'values="{";".join(f"{v+3:.0f}" for v in cv)}" keyTimes="{";".join(f"{k:.4f}" for k in ck)}"/></rect>')
+    caret = ""
+    clip_defs = ""
 
     defs = (bg_defs(0.5, 0.25)
             + clip_defs
@@ -201,7 +167,7 @@ def hero(avatar_b64):
             + f'<clipPath id="av"><circle cx="{cx}" cy="{cy}" r="62"/></clipPath>'
             + f'<clipPath id="card"><rect width="{W}" height="{H}" rx="22"/></clipPath>')
 
-    style = (".gx path{vector-effect:non-scaling-stroke}.blink{animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}"
+    style = (roles_css + ".gx path{vector-effect:non-scaling-stroke}.blink{animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}"
              ".breathe{animation:br 6s ease-in-out infinite}@keyframes br{0%,100%{opacity:.55}50%{opacity:1}}"
              ".pulse{animation:pu 2s ease-out infinite;transform-box:fill-box;transform-origin:center}"
              "@keyframes pu{0%{transform:scale(1);opacity:.7}100%{transform:scale(3);opacity:0}}"
@@ -241,12 +207,12 @@ def hero(avatar_b64):
             f'<ellipse cx="{cx}" cy="1210" rx="1080" ry="700" fill="url(#horizon)" filter="url(#blur)" class="breathe"/>',
             f'<ellipse cx="{cx}" cy="1230" rx="1060" ry="700" fill="{VOID}"/>',
             f'<ellipse cx="{cx}" cy="1230" rx="1060" ry="700" fill="none" stroke="{HALO}" stroke-opacity=".7" stroke-width="1.5" class="breathe"/>',
-            f'<text x="{cx}" y="575" text-anchor="middle" font-family="{SANS}" font-size="13" letter-spacing="6" fill="{MUTED}">LE MANS · TUNIS · EN ORBITE</text>',
+            f'<text x="{cx}" y="575" text-anchor="middle" font-family="{SANS}" font-size="13" letter-spacing="6" fill="{MUTED}">BASÉ AU MANS · MOBILE EN FRANCE ET AU CANADA</text>',
             # barre du haut façon « agent local »
             f'<text x="34" y="44" font-family="{MONO}" font-size="13" fill="{MUTED}">github.com/adam-hassen</text>',
             f'<rect x="926" y="24" width="244" height="32" rx="16" fill="#FFFFFF" fill-opacity=".03" stroke="#2A3160"/>',
             f'<circle cx="948" cy="40" r="4" fill="{GREEN}"/><circle cx="948" cy="40" r="4" fill="{GREEN}" class="pulse"/>',
-            f'<text x="962" y="45" font-family="{MONO}" font-size="13" fill="#D7DCF5">ouvert à un stage PFE</text>',
+            f'<text x="962" y="45" font-family="{MONO}" font-size="13" fill="#D7DCF5">stage PFE · mars 2027</text>',
             '</g>']
     return svg(W, H, "".join(body), style, defs)
 
@@ -484,10 +450,125 @@ def footer():
             f'<ellipse cx="600" cy="880" rx="1000" ry="720" fill="url(#hz)" filter="url(#blur)" class="breathe"/>',
             f'<ellipse cx="600" cy="895" rx="980" ry="720" fill="{VOID}"/>',
             f'<ellipse cx="600" cy="895" rx="980" ry="720" fill="none" stroke="{HALO}" stroke-opacity=".7" stroke-width="1.5" class="breathe"/>',
-            f'<text x="600" y="92" text-anchor="middle" font-family="{SANS}" font-size="28" font-weight="700" fill="{STAR}">Merci pour la visite</text>',
-            f'<text x="600" y="126" text-anchor="middle" font-family="{SANS}" font-size="16" fill="#BAC1DC">Une idée, un stage, un projet ? Écris-moi : adam.hassen941@gmail.com</text>',
+            f'<text x="600" y="92" text-anchor="middle" font-family="{SANS}" font-size="28" font-weight="700" fill="{STAR}">Construisons quelque chose ensemble</text>',
+            f'<text x="600" y="126" text-anchor="middle" font-family="{SANS}" font-size="16" fill="#BAC1DC">Stage de fin d&#39;études dès mars 2027 · adam.hassen941@gmail.com</text>',
             '</g>']
     with open(os.path.join(OUT, "galaxy-footer.svg"), "w", encoding="utf-8") as f:
+        f.write(svg(W, H, "".join(body), style, defs))
+
+
+# ─────────────────────── EN BREF (pour les recruteurs) ───────────────────────
+def brief():
+    W, H = 1200, 430
+    pitch = [
+        "Je transforme des données brutes",
+        "en modèles utiles, et des modèles",
+        "en produits qu'on a envie d'utiliser.",
+    ]
+    proofs = [
+        ("Data & IA", "ML, deep learning, NLP, LLM locaux et RAG"),
+        ("Produit", "Full-stack et IHM : des outils que les gens comprennent"),
+        ("Terrain", "Stage chez Vermeg, cofondateur de la startup LinqCe"),
+    ]
+    rows = [
+        ("Je cherche", "Stage de fin d'études, 6 mois"),
+        ("Disponible", "Mars 2027"),
+        ("Postes visés", "Data Scientist · ML Engineer · NLP"),
+        ("Mobilité", "France et Canada"),
+        ("Formation", "Double diplôme d'ingénieur"),
+        ("Contact", "adam.hassen941@gmail.com"),
+    ]
+    style = (".row{opacity:0;animation:rw .9s cubic-bezier(.2,.7,.2,1) forwards}"
+             "@keyframes rw{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}"
+             ".pf{opacity:0;animation:pf 1s ease-out forwards}@keyframes pf{to{opacity:1}}"
+             ".pulse{animation:pu 2s ease-out infinite;transform-box:fill-box;transform-origin:center}"
+             "@keyframes pu{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.2);opacity:0}}"
+             ".sweep{animation:sw 7s ease-in-out infinite}@keyframes sw{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateY(" + str(H - 80) + "px);opacity:0}}")
+    defs = (bg_defs(0.15, 0.2) + f'<clipPath id="cc"><rect width="{W}" height="{H}" rx="22"/></clipPath>'
+            f'<linearGradient id="sl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{INDIGO}" stop-opacity="0"/>'
+            f'<stop offset=".5" stop-color="{HALO}" stop-opacity=".5"/><stop offset="1" stop-color="{INDIGO}" stop-opacity="0"/></linearGradient>'
+            f'<linearGradient id="pt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{STAR}"/><stop offset="1" stop-color="#C9D2FF"/></linearGradient>')
+    body = [frame(W, H), '<g clip-path="url(#cc)">', f'<g opacity=".7">{starfield(W, H, 60, 91, (.3, 1))}</g>']
+    for i, l in enumerate(pitch):
+        body.append(f'<text class="pf" style="animation-delay:{.2 + i*.35}s" x="44" y="{84 + i*38}" font-family="{SANS}" '
+                    f'font-size="28" font-weight="600" letter-spacing="-.4" fill="url(#pt)">{e(l)}</text>')
+    y = 228
+    for i, (k, v) in enumerate(proofs):
+        d = 1 + i * .25
+        body.append(f'<g class="pf" style="animation-delay:{d}s">'
+                    f'<path transform="translate(54 {y-5})" d="M0-7L1.9-1.9 7 0 1.9 1.9 0 7-1.9 1.9-7 0-1.9-1.9Z" fill="{HALO}"/>'
+                    f'<text x="76" y="{y}" font-family="{SANS}" font-size="16" font-weight="700" fill="{STAR}">{e(k)}</text>'
+                    f'<text x="76" y="{y+24}" font-family="{SANS}" font-size="15.5" fill="#AEB6D6">{e(v)}</text></g>')
+        y += 60
+    x0 = 700
+    body.append(f'<rect x="{x0-24}" y="28" width="{W-x0-4}" height="{H-56}" rx="18" fill="#FFFFFF" fill-opacity=".025" stroke="#232A55"/>')
+    body.append(f'<rect class="sweep" x="{x0-24}" y="40" width="{W-x0-4}" height="1.5" fill="url(#sl)"/>')
+    ry = 82
+    for i, (k, v) in enumerate(rows):
+        d = .5 + i * .18
+        col = GREEN if k == "Disponible" else STAR
+        dot = ""
+        vx = x0 + 140
+        if k == "Disponible":
+            dot = (f'<circle cx="{x0+146}" cy="{ry-5}" r="4" fill="{GREEN}"/>'
+                   f'<circle class="pulse" cx="{x0+146}" cy="{ry-5}" r="4" fill="{GREEN}"/>')
+            vx = x0 + 160
+        sep = f'<line x1="{x0}" y1="{ry+20}" x2="{W-52}" y2="{ry+20}" stroke="#1C2246"/>' if i < len(rows) - 1 else ""
+        body.append(f'<g class="row" style="animation-delay:{d:.2f}s">'
+                    f'<text x="{x0}" y="{ry}" font-family="{SANS}" font-size="14" fill="{MUTED}">{e(k)}</text>{dot}'
+                    f'<text x="{vx}" y="{ry}" font-family="{SANS}" font-size="16.5" font-weight="600" fill="{col}">{e(v)}</text>{sep}</g>')
+        ry += 56
+    body.append('</g>')
+    with open(os.path.join(OUT, "galaxy-brief.svg"), "w", encoding="utf-8") as f:
+        f.write(svg(W, H, "".join(body), style, defs))
+
+
+# ─────────────────────── PARCOURS (orbite chronologique) ───────────────────────
+def parcours():
+    W, H = 1200, 360
+    steps = [
+        ("ESPRIT", "Cycle ingénieur", "Data Science · Tunis", INDIGO),
+        ("Vermeg", "Stage · assurance", "Monitoring prédictif des logs", HALO),
+        ("LinqCe", "Cofondateur · mars–avril 2026", "Intégration de l'IA", VIOLET),
+        ("ENSIM", "5e année · en cours", "IHM · Le Mans Université", "#7FE3FF"),
+        ("Votre équipe ?", "Stage PFE · mars 2027", "6 mois en Data & IA", GREEN),
+    ]
+    xs = [120, 360, 600, 840, 1080]
+    yc = 180
+    ys = [yc + 22, yc - 22, yc + 22, yc - 22, yc + 22]
+    d = f"M{xs[0]},{ys[0]}"
+    for i in range(1, len(xs)):
+        mx = (xs[i - 1] + xs[i]) / 2
+        d += f" C{mx},{ys[i-1]} {mx},{ys[i]} {xs[i]},{ys[i]}"
+    style = (".trail{stroke-dasharray:1100;stroke-dashoffset:1100;animation:tr 3s cubic-bezier(.4,0,.2,1) forwards}"
+             "@keyframes tr{to{stroke-dashoffset:0}}"
+             ".st{opacity:0;animation:st .8s ease-out forwards}@keyframes st{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}"
+             ".ring{animation:rg 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}"
+             "@keyframes rg{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.6);opacity:0}}"
+             ".spin{animation:sp 10s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes sp{to{transform:rotate(360deg)}}")
+    defs = (bg_defs(0.5, 0.5) + f'<clipPath id="cc"><rect width="{W}" height="{H}" rx="22"/></clipPath>'
+            f'<linearGradient id="tg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{INDIGO}"/><stop offset=".6" stop-color="{VIOLET}"/><stop offset="1" stop-color="{GREEN}"/></linearGradient>'
+            f'<radialGradient id="cm"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="{HALO}" stop-opacity=".8"/><stop offset="1" stop-color="{HALO}" stop-opacity="0"/></radialGradient>')
+    body = [frame(W, H), '<g clip-path="url(#cc)">', starfield(W, H, 90, 61, (.3, 1.1)),
+            f'<path d="{d}" fill="none" stroke="#232A55" stroke-width="2"/>',
+            f'<path class="trail" d="{d}" fill="none" stroke="url(#tg)" stroke-width="2"/>',
+            f'<circle r="10" fill="url(#cm)"><animateMotion dur="7s" repeatCount="indefinite" path="{d}"/></circle>']
+    for i, ((name, when, what, col), x, y) in enumerate(zip(steps, xs, ys)):
+        dl = .4 + i * .5
+        last = i == len(steps) - 1
+        up = y < yc
+        ty = y - 92 if up else y + 50
+        if last:
+            node = (f'<circle cx="{x}" cy="{y}" r="16" fill="none" stroke="{col}" stroke-width="1.5" stroke-dasharray="4 5" class="spin"/>'
+                    f'<circle cx="{x}" cy="{y}" r="7" fill="{col}"/><circle class="ring" cx="{x}" cy="{y}" r="7" fill="none" stroke="{col}" stroke-width="2"/>')
+        else:
+            node = f'<circle cx="{x}" cy="{y}" r="11" fill="{VOID}" stroke="{col}" stroke-width="2"/><circle cx="{x}" cy="{y}" r="4.5" fill="{col}"/>'
+        body.append(f'<g class="st" style="animation-delay:{dl:.1f}s">{node}'
+                    f'<text x="{x}" y="{ty}" text-anchor="middle" font-family="{SANS}" font-size="19" font-weight="700" fill="{GREEN if last else STAR}">{e(name)}</text>'
+                    f'<text x="{x}" y="{ty+22}" text-anchor="middle" font-family="{SANS}" font-size="13.5" fill="{col}">{e(when)}</text>'
+                    f'<text x="{x}" y="{ty+42}" text-anchor="middle" font-family="{SANS}" font-size="13.5" fill="#AEB6D6">{e(what)}</text></g>')
+    body.append('</g>')
+    with open(os.path.join(OUT, "galaxy-parcours.svg"), "w", encoding="utf-8") as f:
         f.write(svg(W, H, "".join(body), style, defs))
 
 
@@ -497,17 +578,17 @@ def main():
         av = base64.b64encode(f.read()).decode()
     with open(os.path.join(OUT, "galaxy-hero.svg"), "w", encoding="utf-8") as f:
         f.write(hero(av))
-    with open(os.path.join(OUT, "galaxy-about.svg"), "w", encoding="utf-8") as f:
-        f.write(about())
+    brief()
+    parcours()
     agent_card()
     project_card("galaxy-assurance.svg", "Services intelligents pour l'assurance", "Recherche appliquée · 2026–2027",
                  "Agent de personnalisation des offres avec un petit LLM local, conseiller RAG qui analyse un contrat "
                  "en citant ses sources, et benchmark de la sévérité des sinistres : ML classique contre architectures hybrides.",
                  ["Python", "LLM", "RAG", "Fine-tuning"], "#7FE3FF", "#2457C5", 1, ring=True)
     project_card("galaxy-bourse.svg", "Prédiction des marchés boursiers", "Projet académique",
-                 "Plateforme de prédiction sur séries temporelles. Extraction automatique depuis plusieurs APIs de marché, "
-                 "harmonisation de sources hétérogènes, feature engineering et modèles de deep learning.",
-                 ["Python", "LSTM", "Time Series", "APIs"], "#FFC27A", "#C2562A", 2)
+                 "Application full-stack déployée sur Hugging Face : modèle Transformer hybride et sentiment des news "
+                 "avec FinBERT. J'ai conçu le pipeline de données automatisé (APIs de marché, nettoyage, CI).",
+                 ["Transformer", "FinBERT", "Flask", "GitHub Actions"], "#FFC27A", "#C2562A", 2)
     project_card("galaxy-crypto.svg", "Crypto Due Diligence", "Projet académique",
                  "Site web d'analyse de cryptomonnaies développé en Python avec Dash, avec une banque de "
                  "questions-réponses basée sur le modèle de langage Mistral-7B.",
@@ -517,7 +598,7 @@ def main():
                  "et modèle prédictif pour anticiper les incidents et identifier leurs causes probables.",
                  ["Python", "Machine Learning", "Dashboard"], "#7DF0B5", "#1E7A63", 4)
     stack()
-    for fn, t, s in [("galaxy-h-about.svg", "À propos", 41), ("galaxy-h-projets.svg", "Projets", 42),
+    for fn, t, s in [("galaxy-h-brief.svg", "En bref", 40), ("galaxy-h-parcours.svg", "Parcours", 41), ("galaxy-h-projets.svg", "Projets", 42),
                      ("galaxy-h-stack.svg", "Ma constellation technique", 43), ("galaxy-h-stats.svg", "Statistiques", 44),
                      ("galaxy-h-contrib.svg", "Contributions", 45)]:
         divider(fn, t, s)
