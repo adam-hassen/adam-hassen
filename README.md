@@ -6,6 +6,7 @@
   <a href="mailto:adam.hassen941@gmail.com"><img src="https://img.shields.io/badge/Me%20contacter-0A0E22?style=for-the-badge&logo=gmail&logoColor=A88BFF" alt="Me contacter"/></a>
   <a href="https://www.linkedin.com/in/adam-hassen-06922b170/"><img src="https://img.shields.io/badge/LinkedIn-0A0E22?style=for-the-badge&logo=linkedin&logoColor=9DB4FF" alt="LinkedIn"/></a>
   <a href="https://huggingface.co/adam5858"><img src="https://img.shields.io/badge/Hugging%20Face-0A0E22?style=for-the-badge&logo=huggingface&logoColor=FFD21E" alt="Hugging Face"/></a>
+  <img src="https://komarev.com/ghpvc/?username=adam-hassen&style=for-the-badge&color=6E7BFF&label=VISITES" alt="Visites du profil"/>
 </p>
 
 <img src="./assets/galaxy-h-brief.svg" width="100%" alt="En bref"/>
@@ -17,7 +18,7 @@
 <img src="./assets/galaxy-h-parcours.svg" width="100%" alt="Parcours"/>
 
 <p align="center">
-  <img src="./assets/galaxy-parcours.svg" width="100%" alt="ESPRIT (Data Science), stage Vermeg, cofondateur LinqCe, ENSIM (IHM, 5e année), puis stage de fin d'études en mars 2027"/>
+  <img src="./assets/galaxy-parcours.svg" width="100%" alt="ESPRIT 2021–2026 (Data Science), stage Aman Bank 2023–2024, stage Vermeg 2024–2025, associé technique LinqCe 2025–2026, ENSIM 2025–2027 (IHM), puis stage de fin d'études en mars 2027"/>
 </p>
 
 <img src="./assets/galaxy-h-projets.svg" width="100%" alt="Projets"/>
@@ -44,6 +45,12 @@
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-chiffres.svg" width="100%" alt="Statistiques GitHub en chiffres"/>
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-visites.svg" width="100%" alt="Courbe des visites du profil par jour"/>
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-courbe.svg" width="100%" alt="Courbe des contributions par semaine"/>
 </p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-langages.svg" width="49%" alt="Langages les plus utilisés"/>

@@ -35,13 +35,13 @@ def svg(w, h, body, style="", defs=""):
 
 BASE_CSS = (
     "@media (prefers-reduced-motion:reduce){*{animation:none!important}}"
-    ".tw1{animation:tw 3.2s ease-in-out infinite}.tw2{animation:tw 4.7s ease-in-out infinite}"
-    ".tw3{animation:tw 6.1s ease-in-out infinite}"
+    ".tw1{animation:tw 1.8s ease-in-out infinite}.tw2{animation:tw 2.7s ease-in-out infinite}"
+    ".tw3{animation:tw 3.6s ease-in-out infinite}"
     "@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}}"
-    ".drift{animation:dr 60s ease-in-out infinite alternate}.drift2{animation:dr2 90s ease-in-out infinite alternate}"
-    "@keyframes dr{to{transform:translate(-36px,6px)}}@keyframes dr2{to{transform:translate(24px,-8px)}}"
-    ".shoot{opacity:0;animation:sh 9s linear infinite}"
-    "@keyframes sh{0%{opacity:0;transform:translate(0,0)}2%{opacity:1}9%{opacity:0;transform:translate(-340px,170px)}100%{opacity:0;transform:translate(-340px,170px)}}"
+    ".drift{animation:dr 18s ease-in-out infinite alternate}.drift2{animation:dr2 26s ease-in-out infinite alternate}"
+    "@keyframes dr{to{transform:translate(-60px,10px)}}@keyframes dr2{to{transform:translate(40px,-12px)}}"
+    ".shoot{opacity:0;animation:sh 5s linear infinite}"
+    "@keyframes sh{0%{opacity:0;transform:translate(0,0)}2%{opacity:1}14%{opacity:0;transform:translate(-340px,170px)}100%{opacity:0;transform:translate(-340px,170px)}}"
 )
 
 
@@ -130,7 +130,7 @@ def spiral(seed=7, arms=3, per=170, rmax=330):
 
 
 
-def hero(avatar_b64):
+def hero():
     W, H = 1200, 600
     cx, cy = 600, 196
     roles = [
@@ -164,11 +164,15 @@ def hero(avatar_b64):
             + f'<radialGradient id="horizon" cx=".5" cy="0" r=".6"><stop offset="0" stop-color="{HALO}" stop-opacity=".55"/><stop offset="1" stop-color="{HALO}" stop-opacity="0"/></radialGradient>'
             + '<filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>'
             + '<filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>'
-            + f'<clipPath id="av"><circle cx="{cx}" cy="{cy}" r="62"/></clipPath>'
+            + f'<radialGradient id="nuc"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".25" stop-color="#FFF1DC"/><stop offset=".6" stop-color="{VIOLET}" stop-opacity=".6"/><stop offset="1" stop-color="{INDIGO}" stop-opacity="0"/></radialGradient>'
+            + f'<linearGradient id="fh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'
+            + f'<linearGradient id="fv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'
             + f'<clipPath id="card"><rect width="{W}" height="{H}" rx="22"/></clipPath>')
 
     style = (roles_css + ".gx path{vector-effect:non-scaling-stroke}.blink{animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}"
-             ".breathe{animation:br 6s ease-in-out infinite}@keyframes br{0%,100%{opacity:.55}50%{opacity:1}}"
+             ".breathe{animation:br 4s ease-in-out infinite}@keyframes br{0%,100%{opacity:.55}50%{opacity:1}}"
+             ".beat{animation:bt 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes bt{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}"
+             ".flare{animation:fl 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes fl{0%,100%{opacity:.5;transform:scale(.85)}50%{opacity:1;transform:scale(1.1)}}"
              ".pulse{animation:pu 2s ease-out infinite;transform-box:fill-box;transform-origin:center}"
              "@keyframes pu{0%{transform:scale(1);opacity:.7}100%{transform:scale(3);opacity:0}}"
              ".rise{animation:ri 1.4s cubic-bezier(.2,.7,.2,1) both}@keyframes ri{from{opacity:0;transform:translateY(14px)}}"
@@ -183,21 +187,24 @@ def hero(avatar_b64):
             shooting([(1050, 70, 1), (820, 40, 4.5), (1150, 220, 7.2)]),
             # galaxie spirale inclinée, en rotation lente
             f'<g class="fade" transform="translate({cx} {cy}) rotate(-14) scale(1 .4)">'
-            '<g><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="140s" repeatCount="indefinite"/>'
+            '<g><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="55s" repeatCount="indefinite"/>'
             f'{spiral()}</g></g>',
             f'<ellipse cx="{cx}" cy="{cy}" rx="190" ry="80" fill="url(#core)" class="breathe" transform="rotate(-14 {cx} {cy})"/>',
             # orbite + lune
             f'<ellipse id="orb" cx="{cx}" cy="{cy}" rx="112" ry="34" fill="none" stroke="{HALO}" stroke-opacity=".25" stroke-dasharray="2 5" transform="rotate(-14 {cx} {cy})"/>',
-            # photo
-            f'<circle cx="{cx}" cy="{cy}" r="76" fill="{VIOLET}" opacity=".35" filter="url(#blur)" class="breathe"/>',
-            f'<circle cx="{cx}" cy="{cy}" r="66" fill="{VOID}"/>',
-            f'<image href="data:image/jpeg;base64,{avatar_b64}" xlink:href="data:image/jpeg;base64,{avatar_b64}" x="{cx-62}" y="{cy-62}" width="124" height="124" clip-path="url(#av)" preserveAspectRatio="xMidYMid slice"/>',
-            f'<circle cx="{cx}" cy="{cy}" r="67" fill="none" stroke="url(#ring)" stroke-width="2.5">'
-            f'<animateTransform attributeName="transform" type="rotate" from="0 {cx} {cy}" to="360 {cx} {cy}" dur="12s" repeatCount="indefinite"/></circle>',
+            # noyau galactique (la photo est déjà à gauche sur GitHub)
+            f'<circle cx="{cx}" cy="{cy}" r="70" fill="{VIOLET}" opacity=".4" filter="url(#blur)" class="breathe"/>',
+            f'<circle cx="{cx}" cy="{cy}" r="34" fill="url(#nuc)" class="beat"/>',
+            f'<g class="flare" opacity=".85"><path d="M{cx-150} {cy}h300" stroke="url(#fh)" stroke-width="1.4"/>'
+            f'<path d="M{cx} {cy-70}v140" stroke="url(#fv)" stroke-width="1.2"/></g>',
+            f'<g transform="rotate(-14 {cx} {cy})"><ellipse cx="{cx}" cy="{cy}" rx="62" ry="19" fill="none" stroke="url(#ring)" stroke-width="2">'
+            f'<animate attributeName="stroke-dashoffset" values="0;-300" dur="4s" repeatCount="indefinite"/></ellipse>'
+            f'<ellipse cx="{cx}" cy="{cy}" rx="62" ry="19" fill="none" stroke="{STAR}" stroke-width="2.5" stroke-dasharray="18 300" stroke-linecap="round">'
+            f'<animate attributeName="stroke-dashoffset" values="0;-318" dur="3s" repeatCount="indefinite"/></ellipse></g>',
             # lune qui passe devant (moitié avant de l'orbite)
-            f'<g transform="rotate(-14 {cx} {cy})"><circle r="5" fill="{HALO}"><animateMotion dur="9s" repeatCount="indefinite" '
+            f'<g transform="rotate(-14 {cx} {cy})"><circle r="5" fill="{HALO}"><animateMotion dur="5s" repeatCount="indefinite" '
             f'path="M{cx+112},{cy} A112,34 0 1,1 {cx-112},{cy} A112,34 0 1,1 {cx+112},{cy}"/></circle>'
-            f'<circle r="11" fill="{HALO}" opacity=".25" filter="url(#soft)"><animateMotion dur="9s" repeatCount="indefinite" '
+            f'<circle r="11" fill="{HALO}" opacity=".25" filter="url(#soft)"><animateMotion dur="5s" repeatCount="indefinite" '
             f'path="M{cx+112},{cy} A112,34 0 1,1 {cx-112},{cy} A112,34 0 1,1 {cx+112},{cy}"/></circle></g>',
             # nom + frappe
             f'<text class="rise" x="{cx}" y="330" text-anchor="middle" font-family="{SANS}" font-size="58" font-weight="700" letter-spacing="-1" fill="url(#name)">Adam Hassen</text>',
@@ -279,7 +286,7 @@ def about():
 
 
 # ─────────────────────── PROJETS (planètes) ───────────────────────
-def planet(cx, cy, r, c1, c2, ring=False, moon=True, seed=0, speed=14):
+def planet(cx, cy, r, c1, c2, ring=False, moon=True, seed=0, speed=6):
     rnd = random.Random(seed)
     pid = f"p{seed}"
     bands = "".join(
@@ -352,11 +359,11 @@ def agent_card():
     orbit = []
     for name, ang in nodes:
         orbit.append(
-            f'<g><animateTransform attributeName="transform" type="rotate" from="{ang} {cx} {cy}" to="{ang+360} {cx} {cy}" dur="40s" repeatCount="indefinite"/>'
+            f'<g><animateTransform attributeName="transform" type="rotate" from="{ang} {cx} {cy}" to="{ang+360} {cx} {cy}" dur="18s" repeatCount="indefinite"/>'
             f'<line x1="{cx}" y1="{cy}" x2="{cx+118}" y2="{cy}" stroke="{INDIGO}" stroke-opacity=".25" stroke-dasharray="3 4"/>'
             f'<circle cx="{cx+118}" cy="{cy}" r="5" fill="{HALO}" class="tw1" style="animation-delay:-{ang/90:.1f}s"/>'
             f'<g transform="translate({cx+118} {cy})"><text y="-12" text-anchor="middle" font-family="{SANS}" font-size="12.5" fill="#C9D2FF">'
-            f'<animateTransform attributeName="transform" type="rotate" from="{-ang}" to="{-ang-360}" dur="40s" repeatCount="indefinite"/>{name}</text></g></g>')
+            f'<animateTransform attributeName="transform" type="rotate" from="{-ang}" to="{-ang-360}" dur="18s" repeatCount="indefinite"/>{name}</text></g></g>')
     desc = ("Mon assistant personnel qui tourne entièrement sur mon Mac avec Ollama et FastAPI. "
             "Il analyse le disque, la mémoire et la batterie, repère les apps gourmandes, retrouve un projet "
             "et l'ouvre dans VS Code. Lancé depuis le Dock, sans abonnement, rien ne quitte la machine.")
@@ -388,15 +395,15 @@ def stack():
     groups = [
         ("Data Science & IA", HALO, 60, [
             ("Python", 90, 110), ("PyTorch", 210, 80), ("TensorFlow", 300, 150), ("scikit-learn", 180, 190),
-            ("Hugging Face", 90, 260), ("Pandas", 250, 280), ("Power BI", 330, 350), ("Streamlit", 140, 360)],
+            ("Transformers", 90, 260), ("Pandas", 250, 280), ("Power BI · DAX", 330, 350), ("Streamlit", 140, 360)],
          [(0, 1), (1, 2), (2, 3), (3, 0), (0, 4), (4, 5), (5, 3), (5, 6), (4, 7)]),
         ("Développement", VIOLET, 420, [
             ("Java", 480, 120), ("Spring", 600, 90), ("Node.js", 700, 140), ("Next.js", 650, 230),
-            ("Angular", 520, 230), ("JavaScript", 560, 330), ("C++", 720, 330), ("Flutter", 450, 360)],
+            ("Angular", 520, 230), ("Symfony", 560, 330), ("C / C++ / C#", 720, 330), (".NET", 450, 360)],
          [(0, 1), (1, 2), (2, 3), (3, 4), (4, 0), (4, 5), (5, 6), (3, 6), (5, 7)]),
         ("Données & MLOps", "#7FE3FF", 820, [
             ("SQL", 870, 110), ("Docker", 1000, 90), ("Git", 1110, 150), ("CI/CD", 1040, 220),
-            ("MLOps", 900, 230), ("Jupyter", 960, 330), ("PL/SQL", 860, 350), ("Scrum", 1100, 320)],
+            ("MLOps", 900, 230), ("GitHub Actions", 960, 330), ("PL/SQL", 860, 350), ("Scrum", 1100, 320)],
          [(0, 1), (1, 2), (2, 3), (3, 4), (4, 0), (4, 5), (5, 6), (3, 7), (5, 7)]),
     ]
     style = (".ln{stroke-dasharray:400;stroke-dashoffset:400;animation:dl 2.4s ease-out forwards}"
@@ -459,7 +466,7 @@ def footer():
 
 # ─────────────────────── EN BREF (pour les recruteurs) ───────────────────────
 def brief():
-    W, H = 1200, 430
+    W, H = 1200, 480
     pitch = [
         "Je transforme des données brutes",
         "en modèles utiles, et des modèles",
@@ -468,7 +475,7 @@ def brief():
     proofs = [
         ("Data & IA", "ML, deep learning, NLP, LLM locaux et RAG"),
         ("Produit", "Full-stack et IHM : des outils que les gens comprennent"),
-        ("Terrain", "Stage chez Vermeg, cofondateur de la startup LinqCe"),
+        ("Terrain", "Stages chez Aman Bank et Vermeg, associé technique chez LinqCe"),
     ]
     rows = [
         ("Je cherche", "Stage de fin d'études, 6 mois"),
@@ -476,6 +483,7 @@ def brief():
         ("Postes visés", "Data Scientist · ML Engineer · NLP"),
         ("Mobilité", "France et Canada"),
         ("Formation", "Double diplôme d'ingénieur"),
+        ("Langues", "Français · anglais pro · arabe"),
         ("Contact", "adam.hassen941@gmail.com"),
     ]
     style = (".row{opacity:0;animation:rw .9s cubic-bezier(.2,.7,.2,1) forwards}"
@@ -527,20 +535,21 @@ def brief():
 def parcours():
     W, H = 1200, 360
     steps = [
-        ("ESPRIT", "Cycle ingénieur", "Data Science · Tunis", INDIGO),
-        ("Vermeg", "Stage · assurance", "Monitoring prédictif des logs", HALO),
-        ("LinqCe", "Cofondateur · mars–avril 2026", "Intégration de l'IA", VIOLET),
-        ("ENSIM", "5e année · en cours", "IHM · Le Mans Université", "#7FE3FF"),
+        ("ESPRIT", "2021–2026", "Ingénieur · Data Science", INDIGO),
+        ("Aman Bank", "Stage · 2023–2024", "Appli web Angular + Node.js", "#7FE3FF"),
+        ("Vermeg", "Stage · 2024–2025", "Monitoring prédictif des logs", HALO),
+        ("LinqCe", "Associé technique · 2025–2026", "IA et full-stack", VIOLET),
+        ("ENSIM", "2025–2027 · en cours", "Ingénieur · IHM", "#C9A6FF"),
         ("Votre équipe ?", "Stage PFE · mars 2027", "6 mois en Data & IA", GREEN),
     ]
-    xs = [120, 360, 600, 840, 1080]
+    xs = [100, 300, 500, 700, 900, 1100]
     yc = 180
-    ys = [yc + 22, yc - 22, yc + 22, yc - 22, yc + 22]
+    ys = [yc + 22 if i % 2 == 0 else yc - 22 for i in range(len(xs))]
     d = f"M{xs[0]},{ys[0]}"
     for i in range(1, len(xs)):
         mx = (xs[i - 1] + xs[i]) / 2
         d += f" C{mx},{ys[i-1]} {mx},{ys[i]} {xs[i]},{ys[i]}"
-    style = (".trail{stroke-dasharray:1100;stroke-dashoffset:1100;animation:tr 3s cubic-bezier(.4,0,.2,1) forwards}"
+    style = (".trail{stroke-dasharray:1300;stroke-dashoffset:1300;animation:tr 3s cubic-bezier(.4,0,.2,1) forwards}"
              "@keyframes tr{to{stroke-dashoffset:0}}"
              ".st{opacity:0;animation:st .8s ease-out forwards}@keyframes st{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}"
              ".ring{animation:rg 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}"
@@ -552,7 +561,7 @@ def parcours():
     body = [frame(W, H), '<g clip-path="url(#cc)">', starfield(W, H, 90, 61, (.3, 1.1)),
             f'<path d="{d}" fill="none" stroke="#232A55" stroke-width="2"/>',
             f'<path class="trail" d="{d}" fill="none" stroke="url(#tg)" stroke-width="2"/>',
-            f'<circle r="10" fill="url(#cm)"><animateMotion dur="7s" repeatCount="indefinite" path="{d}"/></circle>']
+            f'<circle r="10" fill="url(#cm)"><animateMotion dur="4.5s" repeatCount="indefinite" path="{d}"/></circle>']
     for i, ((name, when, what, col), x, y) in enumerate(zip(steps, xs, ys)):
         dl = .4 + i * .5
         last = i == len(steps) - 1
@@ -574,10 +583,8 @@ def parcours():
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    with open(os.path.join(OUT, "avatar.jpg"), "rb") as f:
-        av = base64.b64encode(f.read()).decode()
     with open(os.path.join(OUT, "galaxy-hero.svg"), "w", encoding="utf-8") as f:
-        f.write(hero(av))
+        f.write(hero())
     brief()
     parcours()
     agent_card()

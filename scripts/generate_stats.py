@@ -173,15 +173,156 @@ def activity(u):
     return card(w, h, "".join(parts), "Activité mensuelle")
 
 
+# ─────────────── courbes (contributions hebdo + visites du profil) ───────────────
+VIEWS_URL = "https://komarev.com/ghpvc/?username={user}&abbreviated=false"
+HISTORY_URL = "https://raw.githubusercontent.com/{repo}/stats/views-history.json"
+GREEN = "#5BE49B"
+
+
+def smooth(pts, lo=None, hi=None):
+    """Courbe lisse (Catmull-Rom → Bézier) passant par tous les points."""
+    if len(pts) < 2:
+        return ""
+    d = f"M{pts[0][0]:.1f},{pts[0][1]:.1f}"
+    for i in range(len(pts) - 1):
+        p0 = pts[i - 1] if i else pts[i]
+        p1, p2 = pts[i], pts[i + 1]
+        p3 = pts[i + 2] if i + 2 < len(pts) else p2
+        c1 = (p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6)
+        c2 = (p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6)
+        if hi is not None:  # pas de dépassement sous l'axe
+            c1 = (c1[0], min(max(c1[1], lo), hi)); c2 = (c2[0], min(max(c2[1], lo), hi))
+        d += f" C{c1[0]:.1f},{c1[1]:.1f} {c2[0]:.1f},{c2[1]:.1f} {p2[0]:.1f},{p2[1]:.1f}"
+    return d
+
+
+CURVE_CSS = (".draw{stroke-dasharray:1;stroke-dashoffset:1;animation:dw 2.6s cubic-bezier(.4,0,.2,1) .3s forwards}"
+             "@keyframes dw{to{stroke-dashoffset:0}}"
+             ".area{opacity:0;animation:ar 1.6s ease-out 1.6s forwards}@keyframes ar{to{opacity:1}}"
+             ".pulse{animation:pu 1.8s ease-out infinite;transform-box:fill-box;transform-origin:center}"
+             "@keyframes pu{0%{transform:scale(1);opacity:.8}100%{transform:scale(3.4);opacity:0}}")
+
+
+def curve_card(w, h, title, values, labels, color, color2, big, small, empty_msg=None):
+    left, right, top, base = 28, w - 28, 112, h - 44
+    parts = [f'<text x="{w-28}" y="44" text-anchor="end" font-family="{FONT}" font-size="30" font-weight="800" fill="#FFFFFF">{e(big)}</text>'
+             f'<text x="{w-28}" y="68" text-anchor="end" font-family="{FONT}" font-size="13" fill="{MUTED}">{e(small)}</text>']
+    for k in range(4):  # grille discrète
+        y = top + (base - top) * k / 3
+        parts.append(f'<line x1="{left}" y1="{y:.0f}" x2="{right}" y2="{y:.0f}" stroke="#FFFFFF" stroke-opacity=".05"/>')
+    if len(values) < 2:
+        parts.append(f'<text x="{w/2}" y="{(top+base)/2+6:.0f}" text-anchor="middle" font-family="{FONT}" font-size="15" fill="{MUTED}">{e(empty_msg or "")}</text>')
+        return curve_wrap(w, h, title, "".join(parts), color, color2)
+    mx = max(values) or 1
+    n = len(values)
+    pts = [(left + (right - left) * i / (n - 1), base - (base - top) * v / mx) for i, v in enumerate(values)]
+    d = smooth(pts, top - 8, base)
+    area = d + f" L{pts[-1][0]:.1f},{base} L{pts[0][0]:.1f},{base} Z"
+    parts.append(f'<path class="area" d="{area}" fill="url(#ag)"/>')
+    parts.append(f'<path d="{d}" fill="none" stroke="{color}" stroke-width="6" stroke-opacity=".18" stroke-linecap="round" filter="url(#bl)"/>')
+    parts.append(f'<path class="draw" pathLength="1" d="{d}" fill="none" stroke="url(#lg)" stroke-width="2.4" stroke-linecap="round"/>')
+    # point lumineux qui parcourt la courbe
+    parts.append(f'<circle r="4" fill="#fff"><animateMotion dur="6s" begin="3s" repeatCount="indefinite" path="{d}"/></circle>')
+    # pic
+    im = values.index(mx)
+    px, py = pts[im]
+    parts.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4" fill="{color2}"/><circle class="pulse" cx="{px:.1f}" cy="{py:.1f}" r="4" fill="none" stroke="{color2}" stroke-width="1.5"/>'
+                 f'<text x="{min(max(px, 60), w-60):.1f}" y="{py-14:.1f}" text-anchor="middle" font-family="{MONO}" font-size="12" fill="{TXT}">pic : {mx}</text>')
+    # dernier point
+    lx, ly = pts[-1]
+    parts.append(f'<circle cx="{lx:.1f}" cy="{ly:.1f}" r="4.5" fill="{GREEN}"/><circle class="pulse" cx="{lx:.1f}" cy="{ly:.1f}" r="4.5" fill="none" stroke="{GREEN}" stroke-width="1.5"/>')
+    # étiquettes de l'axe
+    step = max(1, n // 8)
+    sparse = sum(1 for l in labels if l) <= 14
+    for i in range(n):
+        if labels[i] and (sparse or i % step == 0):
+            parts.append(f'<text x="{pts[i][0]:.1f}" y="{base+24}" text-anchor="middle" font-family="{FONT}" font-size="11.5" fill="{MUTED}">{e(labels[i])}</text>')
+    return curve_wrap(w, h, title, "".join(parts), color, color2)
+
+
+def curve_wrap(w, h, title, body, color, color2):
+    extra = (f'<linearGradient id="lg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{color}"/><stop offset="1" stop-color="{color2}"/></linearGradient>'
+             f'<linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{color}" stop-opacity=".35"/><stop offset="1" stop-color="{color}" stop-opacity="0"/></linearGradient>'
+             '<filter id="bl" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>')
+    svg = card(w, h, body, title)
+    return svg.replace("</defs>", extra + "</defs>", 1).replace("</style>", CURVE_CSS + "</style>", 1)
+
+
+def contributions_curve(u):
+    days = [d for wk in u["contributionsCollection"]["contributionCalendar"]["weeks"] for d in wk["contributionDays"]]
+    weeks, labels, last_month = [], [], None
+    for i in range(0, len(days), 7):
+        chunk = days[i:i + 7]
+        weeks.append(sum(d["contributionCount"] for d in chunk))
+        m = dt.date.fromisoformat(chunk[0]["date"]).month
+        labels.append(MOIS[m - 1] if m != last_month else "")
+        last_month = m
+    total = u["contributionsCollection"]["contributionCalendar"]["totalContributions"]
+    return curve_card(1200, 330, "Contributions par semaine", weeks, labels, ACC, "#C9A6FF",
+                      str(total), "contributions sur 12 mois")
+
+
+def load_history(repo):
+    try:
+        with urllib.request.urlopen(HISTORY_URL.format(repo=repo), timeout=15) as r:
+            return json.loads(r.read().decode())
+    except Exception:
+        return {}
+
+
+def fetch_views(user):
+    import re
+    req = urllib.request.Request(VIEWS_URL.format(user=user), headers={"User-Agent": "profile-stats"})
+    with urllib.request.urlopen(req, timeout=15) as r:
+        txt = r.read().decode()
+    nums = re.findall(r">\s*([\d,\. ]+)\s*<", txt)
+    nums = [int(re.sub(r"\D", "", n)) for n in nums if re.sub(r"\D", "", n)]
+    return max(nums) if nums else None
+
+
+def views_curve(hist):
+    dates = sorted(hist)
+    daily, labels = [], []
+    for a, b in zip(dates, dates[1:]):
+        daily.append(max(0, hist[b] - hist[a] - 1))  # -1 : la visite du robot lui-même
+        dd = dt.date.fromisoformat(b)
+        labels.append(f"{dd.day} {MOIS[dd.month-1]}")
+    total = hist[dates[-1]] if dates else 0
+    start = dt.date.fromisoformat(dates[0]) if dates else dt.date.today()
+    msg = f"Suivi démarré le {start.day} {MOIS[start.month-1]} {start.year} · la courbe se dessine jour après jour"
+    return curve_card(1200, 330, "Visites du profil par jour", daily[-60:], labels[-60:], "#7FE3FF", ACC,
+                      str(total), "visites au total", empty_msg=msg)
+
+
+def update_views(user, repo):
+    hist = load_history(repo)
+    try:
+        v = fetch_views(user)
+        if v is not None:
+            hist[dt.date.today().isoformat()] = v
+    except Exception as ex:
+        print("Compteur de visites indisponible :", ex)
+    with open(f"{OUT}/views-history.json", "w", encoding="utf-8") as f:
+        json.dump(hist, f, indent=0, sort_keys=True)
+    return hist
+
+
 def main():
     if "--demo" in sys.argv:
         u = demo()
     else:
         u = fetch(os.environ["GH_USER"], os.environ["GITHUB_TOKEN"])
     os.makedirs(OUT, exist_ok=True)
-    for name, fn in (("stats-chiffres", kpis), ("stats-langages", languages), ("stats-activite", activity)):
+    for name, fn in (("stats-chiffres", kpis), ("stats-langages", languages), ("stats-activite", activity),
+                     ("stats-courbe", contributions_curve)):
         with open(f"{OUT}/{name}.svg", "w", encoding="utf-8") as f:
             f.write(fn(u))
+    if "--demo" in sys.argv:
+        hist = {(dt.date.today() - dt.timedelta(days=30 - i)).isoformat(): 40 + i * 3 + (i * 7) % 11 for i in range(31)}
+    else:
+        hist = update_views(os.environ["GH_USER"], os.environ.get("GITHUB_REPOSITORY", "adam-hassen/adam-hassen"))
+    with open(f"{OUT}/stats-visites.svg", "w", encoding="utf-8") as f:
+        f.write(views_curve(hist))
     print("Graphiques générés dans", OUT)
 
 
