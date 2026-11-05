@@ -13,7 +13,7 @@ from collections import OrderedDict
 OUT = "stats-out"
 FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"
 MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
-ACC, LIGHT, MUTED, TXT = "#2F7FC1", "#7CC4FF", "#8B949E", "#E6EDF3"
+ACC, LIGHT, MUTED, TXT = "#6E7BFF", "#B8C4FF", "#8C93AE", "#F2F4FF"
 MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
 e = html.escape
 
@@ -80,17 +80,26 @@ def demo():
     }
 
 
+def stars(w, h, n=40):
+    import random
+    rnd = random.Random(w * 7 + h)
+    return "".join(
+        f'<circle cx="{rnd.uniform(8, w-8):.0f}" cy="{rnd.uniform(8, h-8):.0f}" r="{rnd.uniform(.3, 1.1):.2f}" fill="#F2F4FF" '
+        f'class="tw" style="animation-delay:-{rnd.uniform(0, 4):.1f}s"/>' for _ in range(n))
+
+
 def card(w, h, body, title):
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F1B2D"/><stop offset="1" stop-color="#0D1117"/></linearGradient>
+<defs><radialGradient id="g" cx=".5" cy=".2" r=".9"><stop offset="0" stop-color="#0A0E22"/><stop offset="1" stop-color="#03040A"/></radialGradient>
 <linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{ACC}"/><stop offset="1" stop-color="{LIGHT}"/></linearGradient>
 <linearGradient id="bar" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="{ACC}"/><stop offset="1" stop-color="{LIGHT}"/></linearGradient></defs>
 <style>.c{{animation:in .8s ease-out both}}@keyframes in{{from{{opacity:0;transform:translateY(6px)}}to{{opacity:1;transform:none}}}}
 .grow{{transform-box:fill-box;transform-origin:bottom;animation:gr 1s ease-out both}}@keyframes gr{{from{{transform:scaleY(0)}}to{{transform:scaleY(1)}}}}
+.tw{{animation:tw 4s ease-in-out infinite}}@keyframes tw{{0%,100%{{opacity:.2}}50%{{opacity:.9}}}}
 .wide{{transform-box:fill-box;transform-origin:left;animation:wd 1s ease-out both}}@keyframes wd{{from{{transform:scaleX(0)}}to{{transform:scaleX(1)}}}}</style>
-<g class="c"><rect x="1" y="1" width="{w-2}" height="{h-2}" rx="14" fill="url(#g)" stroke="#223246"/>
-<rect x="1" y="1" width="{w-2}" height="4" rx="2" fill="url(#a)"/>
-<text x="28" y="44" font-family="{MONO}" font-size="13" font-weight="700" letter-spacing="2" fill="{LIGHT}">{e(title)}</text>
+<g class="c"><rect x="1" y="1" width="{w-2}" height="{h-2}" rx="22" fill="url(#g)" stroke="#1C2246"/>
+{stars(w, h)}
+<text x="28" y="44" font-family="{FONT}" font-size="18" font-weight="700" fill="{TXT}">{e(title)}</text>
 {body}</g></svg>'''
 
 
@@ -110,7 +119,7 @@ def kpis(u):
         parts.append(f'<rect x="{x}" y="62" width="{tw}" height="84" rx="10" fill="{ACC}" fill-opacity="0.08" stroke="{ACC}" stroke-opacity="0.35"/>'
                      f'<text x="{x+20}" y="106" font-family="{FONT}" font-size="34" font-weight="800" fill="#FFFFFF">{val}</text>'
                      f'<text x="{x+20}" y="132" font-family="{FONT}" font-size="14" fill="{MUTED}">{e(label)}</text>')
-    return card(w, h, "".join(parts), "EN CHIFFRES")
+    return card(w, h, "".join(parts), "En chiffres")
 
 
 def languages(u):
@@ -133,7 +142,7 @@ def languages(u):
                      f'<rect class="wide" style="animation-delay:{i*0.12:.2f}s" x="200" y="{y+2}" width="{bw:.0f}" height="14" rx="7" fill="{colors[n]}"/>'
                      f'<text x="562" y="{y+14}" text-anchor="end" font-family="{MONO}" font-size="12" fill="{MUTED}">{pct:.1f} %</text>')
         y += 40
-    return card(w, h, "".join(parts), "LANGAGES LES PLUS UTILISÉS")
+    return card(w, h, "".join(parts), "Langages les plus utilisés")
 
 
 def activity(u):
@@ -153,7 +162,7 @@ def activity(u):
     mx = max(counts.values()) or 1
     step = (right - left) / 12
     bw = step * 0.62
-    parts = [f'<line x1="{left}" y1="{base}" x2="{right}" y2="{base}" stroke="#223246"/>']
+    parts = [f'<line x1="{left}" y1="{base}" x2="{right}" y2="{base}" stroke="#1C2246"/>']
     for i, ((yy, m), v) in enumerate(counts.items()):
         x = left + i * step + (step - bw) / 2
         bh = (base - top_) * v / mx
@@ -161,7 +170,7 @@ def activity(u):
             parts.append(f'<rect class="grow" style="animation-delay:{i*0.06:.2f}s" x="{x:.1f}" y="{base-bh:.1f}" width="{bw:.1f}" height="{bh:.1f}" rx="4" fill="url(#bar)"/>'
                          f'<text x="{x+bw/2:.1f}" y="{base-bh-6:.1f}" text-anchor="middle" font-family="{MONO}" font-size="11" fill="{TXT}">{v}</text>')
         parts.append(f'<text x="{x+bw/2:.1f}" y="{base+20}" text-anchor="middle" font-family="{FONT}" font-size="11" fill="{MUTED}">{MOIS[m-1]}</text>')
-    return card(w, h, "".join(parts), "ACTIVITÉ MENSUELLE")
+    return card(w, h, "".join(parts), "Activité mensuelle")
 
 
 def main():
