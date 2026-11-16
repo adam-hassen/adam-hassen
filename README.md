@@ -1,67 +1,76 @@
-<img src="./assets/header.svg" width="100%" alt="Adam Hassen, Data Scientist et ingénieur IHM en formation. Double diplôme d'ingénieur ESPRIT et ENSIM. Stage de fin d'études de 6 mois à partir de mars 2027."/>
+<img src="./assets/header.svg" width="100%" alt="Adam Hassen, Data Scientist et ingénieur IHM en formation. Double diplôme d'ingénieur ESPRIT et ENSIM. Stage de fin d'études de 6 mois en Data et IA, disponible en mars 2027."/>
 
-Élève ingénieur en dernière année d'un double diplôme : **Data Science** à ESPRIT (Tunis) et **Interaction Personnes-Systèmes** à l'ENSIM, Le Mans Université. Je travaille sur toute la chaîne de la donnée, de la collecte à la mise en production de modèles, et je m'intéresse autant aux modèles qu'aux interfaces qui les rendent utiles.
-
-**Je cherche un stage de fin d'études de 6 mois en Data Science, Machine Learning ou NLP, à partir de mars 2027**, en France ou au Canada.
-
-[![Email](https://img.shields.io/badge/adam.hassen941@gmail.com-2F5BEA?style=flat-square&logo=gmail&logoColor=white)](mailto:adam.hassen941@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-2F5BEA?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/adam-hassen-06922b170/)
-[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-2F5BEA?style=flat-square&logo=huggingface&logoColor=white)](https://huggingface.co/adam5858)
+<p align="center">
+  <a href="mailto:adam.hassen941@gmail.com"><img src="https://img.shields.io/badge/adam.hassen941@gmail.com-2F5BEA?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
+  <a href="https://www.linkedin.com/in/adam-hassen-06922b170/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
+  <a href="https://huggingface.co/adam5858"><img src="https://img.shields.io/badge/Hugging%20Face-FFB000?style=for-the-badge&logo=huggingface&logoColor=white" alt="Hugging Face"/></a>
+</p>
 
 <br/>
 
-## Expérience
+Élève ingénieur en dernière année d'un double diplôme, **Data Science** à ESPRIT et **Interaction Personnes-Systèmes** à l'ENSIM. Je travaille sur toute la chaîne de la donnée, de la collecte à la mise en production de modèles, avec le souci de rendre ces modèles utilisables par les personnes qui en ont besoin.
 
-**Associé technique, LinqCe** &nbsp;·&nbsp; 2025–2026<br/>
-Cofondation d'une plateforme de mise en relation entre indépendants, entreprises, associations et administrations. Intégration de l'IA et développement full-stack.
+Je cherche un **stage de fin d'études de 6 mois en Data Science, Machine Learning ou NLP**, à partir de **mars 2027**, en France ou au Canada.
 
-**Stage ingénieur, Vermeg** (département Assurance) &nbsp;·&nbsp; 2024–2025<br/>
-Tableau de bord de surveillance des logs en temps réel, classification automatique des erreurs et modèle prédictif pour anticiper les incidents et en identifier les causes probables.
+<br/>
 
-**Stage, Aman Bank** &nbsp;·&nbsp; 2023–2024<br/>
-Application web bancaire en Angular et Node.js : authentification, modules, consultation des chèques et des effets.
+## Parcours
+
+<img src="./assets/parcours.svg" width="100%" alt="Expérience : associé technique chez LinqCe (2025–2026), stage ingénieur chez Vermeg (2024–2025), stage chez Aman Bank (2023–2024). Formation : ENSIM, Le Mans Université (2025–2027), ESPRIT, Tunis (2021–2026)."/>
 
 <br/>
 
 ## Projets
 
+<p>
+  <a href="https://github.com/adam-hassen/assuria-projet"><img src="./assets/projet-assuria.svg" width="49%" alt="AssurIA : offres d'assurance personnalisées par un petit LLM, conseiller RAG et prédiction du coût des sinistres"/></a>
+  <a href="https://github.com/adam-hassen/stock-auto-update"><img src="./assets/projet-stock.svg" width="49%" alt="Stock Auto Update : pipeline automatisé de données boursières et d'analyse de sentiment"/></a>
+</p>
+<p>
+  <a href="https://github.com/adam-hassen/EEG"><img src="./assets/projet-eeg.svg" width="49%" alt="Charge cognitive EEG : estimation de la charge cognitive d'un conducteur"/></a>
+  <a href="https://github.com/adam-hassen/neuron-forge"><img src="./assets/projet-neuron.svg" width="49%" alt="Neuron Forge : jeu pédagogique sous Unreal Engine 5"/></a>
+</p>
+<p>
+  <a href="https://github.com/adam-hassen/Projet_AR"><img src="./assets/projet-ar.svg" width="49%" alt="AR-Secours : réalité augmentée pour les premiers secours"/></a>
+  <a href="https://github.com/adam-hassen/Mobile"><img src="./assets/projet-budget.svg" width="49%" alt="MonBudget : application Android de gestion de budget"/></a>
+</p>
+
+<details>
+<summary><b>Autres projets</b></summary>
+<br/>
+
 | Projet | Description | Technologies |
 | :-- | :-- | :-- |
-| [**AssurIA**](https://github.com/adam-hassen/assuria-projet) | Services d'assurance intelligents : personnalisation des offres avec un petit LLM fine-tuné, conseiller RAG pour l'analyse de contrats, prédiction du coût des sinistres. Projet de recherche appliquée, en cours. | Python, LLM, RAG, ML, PostgreSQL |
-| [**AssurIA, données**](https://github.com/adam-hassen/assuria-donnees) | Collecte automatique des jeux de données européens du projet (sinistres, offres, simulation de prix). | Python, ETL |
-| [**Stock Auto Update**](https://github.com/adam-hassen/stock-auto-update) | Pipeline automatisé de collecte de données boursières et d'analyse de sentiment financier, publié en dataset sur Hugging Face. | Python, FinBERT, GitHub Actions |
-| [**Charge cognitive EEG**](https://github.com/adam-hassen/EEG) | Estimation de la charge cognitive d'un conducteur à partir de signaux EEG (dataset CL-Drive). | Python, traitement du signal, ML |
-| [**Neuron Forge**](https://github.com/adam-hassen/neuron-forge) | Jeu pédagogique en vue subjective où l'on construit, entraîne et valide un réseau de neurones. | C++, Unreal Engine 5 |
-| [**AR-Secours**](https://github.com/adam-hassen/Projet_AR) | Application Android de réalité augmentée pour apprendre les gestes de premiers secours. | C#, Unity, AR Foundation |
-| [**MonBudget**](https://github.com/adam-hassen/Mobile) | Application Android de gestion de budget pour étudiants. | Kotlin, Jetpack Compose, Room |
-| [**Back-office d'édition**](https://github.com/adam-hassen/travail) | Gestion et planification de publication de séries de livres. [Démo](https://travail-two.vercel.app) | Next.js, TypeScript, PostgreSQL |
-| [**Gestion clients et commandes**](https://github.com/adam-hassen/Projet_DevOps) | Application web CRUD avec facturation, conteneurisée et testée en intégration continue. | Flask, MySQL, Docker, CI/CD |
-| [**EcoGardien**](https://github.com/adam-hassen/java-Mad-Lions) | Application desktop de gestion écologique, projet intégré en équipe. | Java, JavaFX, MySQL |
-| [**Chatbot Telegram**](https://github.com/adam-hassen/Chatbot_Telegram_Interop-rabilit-) | Chatbot connecté à plusieurs APIs, avec une IA conversationnelle (Llama 3.3 70B). | Node.js, Express |
+| [AssurIA, données](https://github.com/adam-hassen/assuria-donnees) | Collecte automatique des jeux de données européens du projet AssurIA | Python, ETL |
+| [Back-office d'édition](https://github.com/adam-hassen/travail) | Planification de publication de séries de livres, [démo en ligne](https://travail-two.vercel.app) | Next.js, TypeScript, PostgreSQL |
+| [Gestion clients et commandes](https://github.com/adam-hassen/Projet_DevOps) | Application web avec facturation, conteneurisée et en intégration continue | Flask, MySQL, Docker, CI/CD |
+| [EcoGardien](https://github.com/adam-hassen/java-Mad-Lions) | Application desktop de gestion écologique, projet intégré en équipe | Java, JavaFX, MySQL |
+| [Chatbot Telegram](https://github.com/adam-hassen/Chatbot_Telegram_Interop-rabilit-) | Chatbot connecté à plusieurs APIs avec une IA conversationnelle | Node.js, Express, Llama 3.3 |
+
+</details>
 
 <br/>
 
 ## Compétences
 
-**Data et IA** : Python, Pandas, NumPy, scikit-learn, TensorFlow, PyTorch, Transformers, NLP, RAG, séries temporelles, Power BI<br/>
-**Développement** : Java, C, C++, C#, .NET, Symfony, Angular, Node.js, Next.js, Kotlin<br/>
-**Données et MLOps** : SQL, PL/SQL, PostgreSQL, Docker, GitHub Actions, Git, Scrum
-
-<p>
-  <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,sklearn,java,cpp,cs,dotnet,angular,nodejs,nextjs,kotlin,postgres,docker,githubactions,unity,unreal&perline=17" alt="Python, PyTorch, TensorFlow, scikit-learn, Java, C++, C#, .NET, Angular, Node.js, Next.js, Kotlin, PostgreSQL, Docker, GitHub Actions, Unity, Unreal Engine"/>
-</p>
-
-<br/>
-
-## Formation
-
-**ENSIM, Le Mans Université** &nbsp;·&nbsp; 2025–2027<br/>
-Cycle ingénieur en informatique, spécialité Interaction Personnes-Systèmes : UX/UI, DevOps, développement mobile, visualisation, réalité augmentée, machine learning avancé.
-
-**ESPRIT, Tunis** &nbsp;·&nbsp; 2021–2026<br/>
-Cycle ingénieur en informatique, spécialité Data Science : statistiques, séries temporelles, Big Data, machine learning et deep learning.
-
-**Langues** : français courant, anglais professionnel, arabe langue maternelle.
+<table>
+  <tr>
+    <td width="170"><b>Data et IA</b></td>
+    <td><img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,sklearn" height="38" alt="Python, PyTorch, TensorFlow, scikit-learn"/><br/><sub>Pandas, NumPy, Transformers, NLP, RAG, séries temporelles, Power BI</sub></td>
+  </tr>
+  <tr>
+    <td><b>Développement</b></td>
+    <td><img src="https://skillicons.dev/icons?i=java,cpp,cs,dotnet,symfony,angular,nodejs,nextjs,kotlin" height="38" alt="Java, C++, C#, .NET, Symfony, Angular, Node.js, Next.js, Kotlin"/></td>
+  </tr>
+  <tr>
+    <td><b>Données et MLOps</b></td>
+    <td><img src="https://skillicons.dev/icons?i=postgres,mysql,docker,githubactions,git" height="38" alt="PostgreSQL, MySQL, Docker, GitHub Actions, Git"/><br/><sub>SQL, PL/SQL, CI/CD, Scrum</sub></td>
+  </tr>
+  <tr>
+    <td><b>3D et XR</b></td>
+    <td><img src="https://skillicons.dev/icons?i=unity,unreal" height="38" alt="Unity, Unreal Engine"/></td>
+  </tr>
+</table>
 
 <br/>
 
@@ -69,6 +78,5 @@ Cycle ingénieur en informatique, spécialité Data Science : statistiques, sér
 
 <p>
   <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-contributions.svg" width="49%" alt="Contributions GitHub par semaine sur 12 mois"/>
-  &nbsp;
-  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-langages.svg" width="47%" alt="Langages les plus utilisés"/>
+  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-langages.svg" width="49%" alt="Langages les plus utilisés"/>
 </p>

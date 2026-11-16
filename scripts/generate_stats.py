@@ -84,9 +84,10 @@ def demo():
 
 # ───────────── thème : fond transparent, couleurs suivant le mode clair / sombre ─────────────
 CSS = f"""
-:root{{--ink:#1A2238;--muted:#5E6782;--rule:#E3E7F0;--track:#EEF1F7;--acc:#2F5BEA;--acc2:#0E9F8F}}
-@media (prefers-color-scheme:dark){{:root{{--ink:#E8ECF6;--muted:#97A0B8;--rule:#262D40;--track:#1C2233;--acc:#7C9CFF;--acc2:#3CCFBE}}}}
-.t{{fill:var(--ink);font:600 17px {FONT}}}
+:root{{--card:#FFFFFF;--line:#E3E8F2;--ink:#111A33;--muted:#6B7592;--rule:#EDF0F6;--track:#EEF1F7;--acc:#2F5BEA;--acc2:#0E9F8F}}
+@media (prefers-color-scheme:dark){{:root{{--card:#10162A;--line:#242C44;--ink:#EEF2FB;--muted:#8A94AF;--rule:#1E2640;--track:#1A2238;--acc:#7C9CFF;--acc2:#3CCFBE}}}}
+.card{{fill:var(--card);stroke:var(--line)}}
+.t{{fill:var(--ink);font:650 19px {FONT}}}
 .big{{fill:var(--ink);font:700 30px {FONT};letter-spacing:-.5px}}
 .lbl{{fill:var(--ink);font:500 14px {FONT}}}
 .m{{fill:var(--muted);font:400 12.5px {FONT}}}
@@ -105,9 +106,11 @@ CSS = f"""
 """
 
 
-def svg(w, h, body, label):
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="{e(label)}">'
-            f'<style>{CSS}</style>{body}</svg>')
+def svg(w, h, body, label, px=32, py=30):
+    W, H = w + 2 * px, h + 2 * py
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{e(label)}">'
+            f'<style>{CSS}</style><rect class="card" x=".5" y=".5" width="{W-1}" height="{H-1}" rx="16"/>'
+            f'<g transform="translate({px} {py})">{body}</g></svg>')
 
 
 def languages(u):
@@ -118,8 +121,8 @@ def languages(u):
             tot[n] = tot.get(n, 0) + ed["size"]
     top = sorted(tot.items(), key=lambda x: -x[1])[:6]
     s = sum(v for _, v in top) or 1
-    w, h = 560, 300
-    parts, y = [f'<text class="t" x="0" y="24">Langages</text>'], 62
+    w, h = 560, 280
+    parts, y = [f'<text class="t" x="0" y="24">Langages</text>'], 66
     for i, (n, v) in enumerate(top):
         pct = v / s * 100
         bw = max(3, 320 * pct / 100)
@@ -153,7 +156,7 @@ def contributions(u):
         m = dt.date.fromisoformat(chunk[0]["date"]).month
         labels.append(MOIS[m - 1] if m != last else "")
         last = m
-    w, h = 560, 300
+    w, h = 560, 280
     left, right, top, base = 0, w, 92, h - 34
     mx = max(weeks) or 1
     n = len(weeks)
