@@ -187,7 +187,7 @@ def activity(u):
         b.append(f'<rect class="seg" style="animation-delay:{.4 + i*.15:.2f}s" x="{x:.1f}" y="{ly}" width="{w + .6:.1f}" height="12" fill="var(--l{i})"/>')
         x += w
     b.append('</g>')
-    tw = lambda t, k: sum((k * 1.18 if c.isupper() else k) for c in t)
+    tw = lambda t, k: sum((k * 1.25 if c.isupper() or c in "+#" else k) for c in t) + 4
     x = lx0
     for i, (name, p) in enumerate(langs):
         label = f"{p:.0f} %"
