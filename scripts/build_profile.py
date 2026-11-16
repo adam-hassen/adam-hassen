@@ -1,13 +1,17 @@
 """Génère les visuels du profil GitHub dans assets/.
 
 Bannière, parcours (expérience et formation) et cartes de projets.
-Fonds de carte et couleurs suivent le thème clair ou sombre de GitHub.
+Chaque visuel existe en variante claire et sombre (name-light.svg, name-dark.svg).
 Usage : python scripts/build_profile.py
 """
 import html
 import math
 import os
 import random
+import sys
+
+sys.path.insert(0, os.path.dirname(__file__))
+from theme import write_pair  # noqa: E402
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "assets")
 SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif"
@@ -50,8 +54,7 @@ def svg(w, h, body, label, css="", defs=""):
 
 
 def write(name, content):
-    with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
-        f.write(content)
+    write_pair(OUT, name, content)
 
 
 def text_w(s, size):
@@ -306,8 +309,43 @@ PROJECTS = [
 ]
 
 
+# ─────────────────────────────── BOUTONS DE CONTACT ───────────────────────────────
+ICONS = {
+    "mail": '<rect x="-9" y="-6.5" width="18" height="13" rx="2.5" fill="none" stroke="var(--k)" stroke-width="1.7"/>'
+            '<path d="M-8-5l8 6 8-6" fill="none" stroke="var(--k)" stroke-width="1.7" stroke-linejoin="round"/>',
+    "linkedin": '<rect x="-9" y="-9" width="18" height="18" rx="3.5" fill="var(--k)"/>'
+                '<path d="M-5-1.5v6.5M-1.2-1.5v6.5M-1.2 1.2c0-1.8 1.2-2.9 2.7-2.9s2.6 1 2.6 2.9v3.8" fill="none" stroke="var(--card)" stroke-width="1.8" stroke-linecap="round"/>'
+                '<circle cx="-5" cy="-4.6" r="1.2" fill="var(--card)"/>',
+    "hf": '<circle r="9" fill="none" stroke="var(--k)" stroke-width="1.7"/><circle cx="-3.2" cy="-2" r="1.3" fill="var(--k)"/>'
+          '<circle cx="3.2" cy="-2" r="1.3" fill="var(--k)"/><path d="M-4 2.5c1.2 2.4 6.8 2.4 8 0" fill="none" stroke="var(--k)" stroke-width="1.7" stroke-linecap="round"/>',
+    "cv": '<path d="M-6-9h8l4 4v14h-12z" fill="none" stroke="var(--k)" stroke-width="1.7" stroke-linejoin="round"/>'
+          '<path d="M-3 0h6M-3 4h6" stroke="var(--k)" stroke-width="1.7" stroke-linecap="round"/>',
+}
+
+
+def button(fname, icon, label, primary=False):
+    w = int(text_w(label, 15) + 78)
+    h = 50
+    css = (":root{--k:var(--acc)}"
+           ".bt{fill:var(--ink);font:600 15px " + SANS + "}"
+           ".pri{fill:#2F5BEA}.prit{fill:#FFFFFF;font:600 15px " + SANS + "}")
+    if primary:
+        css += ":root{--k:#FFFFFF}"
+        bg = f'<rect class="pri" x=".5" y=".5" width="{w-1}" height="{h-1}" rx="{h/2-.5}"/>'
+        tc = "prit"
+    else:
+        bg = f'<rect class="card" x=".5" y=".5" width="{w-1}" height="{h-1}" rx="{h/2-.5}"/>'
+        tc = "bt"
+    body = (bg + f'<g transform="translate(30 {h/2})">{ICONS[icon]}</g>'
+            f'<text class="{tc}" x="52" y="{h/2 + 5.5}">{e(label)}</text>')
+    write(fname, svg(w, h, body, label, css))
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
+    button("btn-mail.svg", "mail", "adam.hassen941@gmail.com", primary=True)
+    button("btn-linkedin.svg", "linkedin", "LinkedIn")
+    button("btn-hf.svg", "hf", "Hugging Face")
     header()
     parcours()
     for p in PROJECTS:

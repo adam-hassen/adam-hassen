@@ -82,109 +82,128 @@ def demo():
 
 
 
-# ───────────── thème : fond transparent, couleurs suivant le mode clair / sombre ─────────────
-CSS = f"""
-:root{{--card:#FFFFFF;--line:#E3E8F2;--ink:#111A33;--muted:#6B7592;--rule:#EDF0F6;--track:#EEF1F7;--acc:#2F5BEA;--acc2:#0E9F8F}}
-@media (prefers-color-scheme:dark){{:root{{--card:#10162A;--line:#242C44;--ink:#EEF2FB;--muted:#8A94AF;--rule:#1E2640;--track:#1A2238;--acc:#7C9CFF;--acc2:#3CCFBE}}}}
-.card{{fill:var(--card);stroke:var(--line)}}
-.t{{fill:var(--ink);font:650 19px {FONT}}}
-.big{{fill:var(--ink);font:700 30px {FONT};letter-spacing:-.5px}}
-.lbl{{fill:var(--ink);font:500 14px {FONT}}}
-.m{{fill:var(--muted);font:400 12.5px {FONT}}}
-.rule{{stroke:var(--rule)}}
-.track{{fill:var(--track)}}
-.bar{{fill:var(--acc);transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:grow 1.2s cubic-bezier(.3,0,.2,1) forwards}}
-.line{{fill:none;stroke:var(--acc);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.4s cubic-bezier(.45,0,.2,1) .2s forwards}}
-.area{{fill:var(--acc);opacity:0;animation:area 1s ease-out 2.2s forwards}}
-.pt{{fill:var(--acc2)}}
-.halo{{fill:none;stroke:var(--acc2);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}}
-@keyframes grow{{to{{transform:scaleX(1)}}}}
-@keyframes draw{{to{{stroke-dashoffset:0}}}}
-@keyframes area{{to{{opacity:.08}}}}
-@keyframes pulse{{0%{{transform:scale(1);opacity:.8}}100%{{transform:scale(3.2);opacity:0}}}}
-@media (prefers-reduced-motion:reduce){{*{{animation:none!important}}.bar{{transform:none}}.line{{stroke-dashoffset:0}}.area{{opacity:.08}}}}
-"""
+sys.path.insert(0, os.path.dirname(__file__))
+from theme import write_pair  # noqa: E402
+
+# ───────────── carte « Activité GitHub » (variante claire et sombre) ─────────────
+PAL_L = ["#2F5BEA", "#0E9F8F", "#7C3AED", "#D97706", "#DB2777", "#0284C7"]
+PAL_D = ["#7C9CFF", "#3CCFBE", "#A78BFA", "#FBBF24", "#F472B6", "#38BDF8"]
+
+CSS = (":root{--card:#FFFFFF;--line:#E3E8F2;--ink:#111A33;--body:#3E4866;--muted:#6B7592;--faint:#E6EAF3;--track:#EEF1F7;--acc:#2F5BEA;--acc2:#0E9F8F;"
+       + "".join(f"--l{i}:{c};" for i, c in enumerate(PAL_L)) + "}"
+       "@media (prefers-color-scheme:dark){:root{--card:#10162A;--line:#242C44;--ink:#EEF2FB;--body:#B9C1D8;--muted:#8A94AF;--faint:#222A42;--track:#1A2238;--acc:#7C9CFF;--acc2:#3CCFBE;"
+       + "".join(f"--l{i}:{c};" for i, c in enumerate(PAL_D)) + "}}"
+       f".card{{fill:var(--card);stroke:var(--line)}}"
+       f".h2{{fill:var(--ink);font:650 22px {FONT};letter-spacing:-.2px}}"
+       f".sub{{fill:var(--muted);font:400 14px {FONT}}}"
+       f".kpi{{fill:var(--ink);font:700 30px {FONT};letter-spacing:-.6px;font-variant-numeric:tabular-nums}}"
+       f".kl{{fill:var(--muted);font:400 13px {FONT}}}"
+       f".ax{{fill:var(--muted);font:400 12px {FONT}}}"
+       f".lg{{fill:var(--body);font:500 13.5px {FONT}}}"
+       f".lp{{fill:var(--muted);font:400 13px {FONT};font-variant-numeric:tabular-nums}}"
+       f".tag{{fill:var(--ink);font:600 12.5px {FONT}}}"
+       ".col{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);animation:up .7s cubic-bezier(.2,.7,.2,1) forwards}"
+       ".seg{transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:gx .7s cubic-bezier(.3,0,.2,1) forwards}"
+       ".in{opacity:0;animation:in .7s ease-out forwards}"
+       "@keyframes up{to{transform:scaleY(1)}}@keyframes gx{to{transform:scaleX(1)}}@keyframes in{to{opacity:1}}"
+       "@media (prefers-reduced-motion:reduce){*{animation:none!important;transform:none!important;opacity:1!important}}")
 
 
-def svg(w, h, body, label, px=32, py=30):
-    W, H = w + 2 * px, h + 2 * py
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{e(label)}">'
-            f'<style>{CSS}</style><rect class="card" x=".5" y=".5" width="{W-1}" height="{H-1}" rx="16"/>'
-            f'<g transform="translate({px} {py})">{body}</g></svg>')
-
-
-def languages(u):
+def lang_share(u):
     tot = OrderedDict()
     for r in u["repositories"]["nodes"]:
         for ed in r["languages"]["edges"]:
-            n = ed["node"]["name"]
-            tot[n] = tot.get(n, 0) + ed["size"]
-    top = sorted(tot.items(), key=lambda x: -x[1])[:6]
-    s = sum(v for _, v in top) or 1
-    w, h = 560, 280
-    parts, y = [f'<text class="t" x="0" y="24">Langages</text>'], 66
-    for i, (n, v) in enumerate(top):
-        pct = v / s * 100
-        bw = max(3, 320 * pct / 100)
-        parts.append(f'<text class="lbl" x="0" y="{y+12}">{e(n)}</text>'
-                     f'<rect class="track" x="180" y="{y}" width="320" height="12" rx="6"/>'
-                     f'<rect class="bar" style="animation-delay:{.2 + i*.12:.2f}s;opacity:{1 - i*0.12:.2f}" x="180" y="{y}" width="{bw:.0f}" height="12" rx="6"/>'
-                     f'<text class="m" x="{w}" y="{y+11}" text-anchor="end">{pct:.0f} %</text>')
-        y += 38
-    return svg(w, h, "".join(parts), "Langages les plus utilisés")
+            tot[ed["node"]["name"]] = tot.get(ed["node"]["name"], 0) + ed["size"]
+    items = sorted(tot.items(), key=lambda x: -x[1])
+    s = sum(v for _, v in items) or 1
+    top = [(n, v / s * 100) for n, v in items[:5]]
+    rest = 100 - sum(p for _, p in top)
+    if rest >= 0.5:
+        top.append(("Autres", rest))
+    return top
 
 
-def smooth(pts, lo, hi):
-    d = f"M{pts[0][0]:.1f},{pts[0][1]:.1f}"
-    for i in range(len(pts) - 1):
-        p0 = pts[i - 1] if i else pts[i]
-        p1, p2 = pts[i], pts[i + 1]
-        p3 = pts[i + 2] if i + 2 < len(pts) else p2
-        c1 = (p1[0] + (p2[0] - p0[0]) / 6, min(max(p1[1] + (p2[1] - p0[1]) / 6, lo), hi))
-        c2 = (p2[0] - (p3[0] - p1[0]) / 6, min(max(p2[1] - (p3[1] - p1[1]) / 6, lo), hi))
-        d += f" C{c1[0]:.1f},{c1[1]:.1f} {c2[0]:.1f},{c2[1]:.1f} {p2[0]:.1f},{p2[1]:.1f}"
-    return d
-
-
-def contributions(u):
+def activity(u):
+    W, H = 1200, 470
     cal = u["contributionsCollection"]["contributionCalendar"]
     days = [d for wk in cal["weeks"] for d in wk["contributionDays"]]
-    weeks, labels, last = [], [], None
+    weeks, months, last = [], [], None
     for i in range(0, len(days), 7):
         chunk = days[i:i + 7]
         weeks.append(sum(d["contributionCount"] for d in chunk))
         m = dt.date.fromisoformat(chunk[0]["date"]).month
-        labels.append(MOIS[m - 1] if m != last else "")
+        months.append(MOIS[m - 1] if m != last else "")
         last = m
-    w, h = 560, 280
-    left, right, top, base = 0, w, 92, h - 34
+    weeks, months = weeks[-52:], months[-52:]
+    active = sum(1 for w in weeks if w)
     mx = max(weeks) or 1
-    n = len(weeks)
-    pts = [(left + (right - left) * i / max(1, n - 1), base - (base - top) * v / mx) for i, v in enumerate(weeks)]
-    d = smooth(pts, top - 6, base)
-    parts = [f'<text class="t" x="0" y="24">Contributions sur 12 mois</text>',
-             f'<text class="big" x="0" y="66">{cal["totalContributions"]}</text>',
-             f'<text class="m" x="{w}" y="66" text-anchor="end">par semaine, pic à {mx}</text>']
+    total = cal["totalContributions"]
+    repos = u["repositories"]["totalCount"]
+
+    b = [f'<rect class="card" x=".5" y=".5" width="{W-1}" height="{H-1}" rx="18"/>',
+         f'<text class="h2" x="44" y="62">Activité GitHub</text>',
+         f'<text class="sub" x="44" y="88">Contributions par semaine sur les 12 derniers mois</text>']
+    kpis = [(str(total), "contributions"), (str(repos), "dépôts"), (f"{active}/{len(weeks)}", "semaines actives")]
+    x = W - 44
+    for i, (v, l) in enumerate(reversed(kpis)):
+        b.append(f'<g class="in" style="animation-delay:{.1 + i*.1:.1f}s"><text class="kpi" x="{x}" y="66" text-anchor="end">{v}</text>'
+                 f'<text class="kl" x="{x}" y="88" text-anchor="end">{e(l)}</text></g>')
+        x -= max(len(v) * 18, len(l) * 7.2) + 44
+
+    # histogramme hebdomadaire
+    x0, x1, top, base = 44, W - 44, 136, 286
     for k in range(3):
         y = top + (base - top) * k / 2
-        parts.append(f'<line class="rule" x1="0" x2="{w}" y1="{y:.0f}" y2="{y:.0f}"/>')
-    parts.append(f'<path class="area" d="{d} L{pts[-1][0]:.1f},{base} L{pts[0][0]:.1f},{base} Z"/>')
-    parts.append(f'<path class="line" pathLength="1" d="{d}"/>')
-    lx, ly = pts[-1]
-    parts.append(f'<circle class="pt" cx="{lx-3:.1f}" cy="{ly:.1f}" r="3.5"/><circle class="halo" cx="{lx-3:.1f}" cy="{ly:.1f}" r="3.5"/>')
-    shown = [i for i, l in enumerate(labels) if l]
-    for j, i in enumerate(shown):
-        if j % 2 == 0 and 16 < pts[i][0] < w - 16:
-            parts.append(f'<text class="m" x="{pts[i][0]:.1f}" y="{h-8}" text-anchor="middle">{labels[i]}</text>')
-    return svg(w, h, "".join(parts), "Contributions GitHub par semaine sur 12 mois")
+        b.append(f'<line x1="{x0}" x2="{x1}" y1="{y:.0f}" y2="{y:.0f}" stroke="var(--faint)" stroke-dasharray="{"0" if k == 2 else "3 5"}"/>')
+    n = len(weeks)
+    step = (x1 - x0) / n
+    bw = step * .62
+    imax = weeks.index(mx)
+    for i, v in enumerate(weeks):
+        cx = x0 + step * i + (step - bw) / 2
+        if v == 0:
+            b.append(f'<rect x="{cx:.1f}" y="{base-3}" width="{bw:.1f}" height="3" rx="1.5" fill="var(--faint)"/>')
+            continue
+        h = max(4, (base - top) * v / mx)
+        col = "var(--acc2)" if i == imax else "var(--acc)"
+        op = 1 if i == imax else .35 + .65 * v / mx
+        b.append(f'<rect class="col" style="animation-delay:{.2 + i*.018:.3f}s" x="{cx:.1f}" y="{base-h:.1f}" width="{bw:.1f}" height="{h:.1f}" rx="{min(3, bw/2):.1f}" fill="{col}" fill-opacity="{op:.2f}"/>')
+    px = x0 + step * imax + step / 2
+    b.append(f'<g class="in" style="animation-delay:1.3s"><text class="tag" x="{min(max(px, 80), W-80):.1f}" y="{top-12}" text-anchor="middle">pic : {mx} contributions</text></g>')
+    for i, m in enumerate(months):
+        if m:
+            b.append(f'<text class="ax" x="{x0 + step*i + step/2:.1f}" y="{base+24}" text-anchor="middle">{m}</text>')
+
+    # langages : barre empilée + légende
+    b.append(f'<line x1="44" x2="{W-44}" y1="338" y2="338" stroke="var(--line)"/>')
+    b.append(f'<text class="h2" style="font-size:17px" x="44" y="378">Langages</text>')
+    langs = lang_share(u)
+    lx0, lx1, ly = 170, W - 44, 366
+    b.append(f'<rect x="{lx0}" y="{ly}" width="{lx1-lx0}" height="12" rx="6" fill="var(--track)"/>')
+    b.append(f'<clipPath id="lc"><rect x="{lx0}" y="{ly}" width="{lx1-lx0}" height="12" rx="6"/></clipPath><g clip-path="url(#lc)">')
+    x = lx0
+    for i, (name, p) in enumerate(langs):
+        w = (lx1 - lx0) * p / 100
+        b.append(f'<rect class="seg" style="animation-delay:{.4 + i*.15:.2f}s" x="{x:.1f}" y="{ly}" width="{w + .6:.1f}" height="12" fill="var(--l{i})"/>')
+        x += w
+    b.append('</g>')
+    tw = lambda t, k: sum((k * 1.18 if c.isupper() else k) for c in t)
+    x = lx0
+    for i, (name, p) in enumerate(langs):
+        label = f"{p:.0f} %"
+        nw = tw(name, 7.4)
+        b.append(f'<g class="in" style="animation-delay:{.6 + i*.12:.2f}s"><circle cx="{x+5}" cy="414" r="5" fill="var(--l{i})"/>'
+                 f'<text class="lg" x="{x+16}" y="419">{e(name)}</text>'
+                 f'<text class="lp" x="{x + 22 + nw:.0f}" y="419">{label}</text></g>')
+        x += 22 + nw + len(label) * 7.4 + 30
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" '
+            f'aria-label="Activité GitHub : {total} contributions sur 12 mois, {repos} dépôts"><style>{CSS}</style>{"".join(b)}</svg>')
 
 
 def main():
     u = demo() if "--demo" in sys.argv else fetch(os.environ["GH_USER"], os.environ["GITHUB_TOKEN"])
     os.makedirs(OUT, exist_ok=True)
-    for name, fn in (("stats-langages", languages), ("stats-contributions", contributions)):
-        with open(f"{OUT}/{name}.svg", "w", encoding="utf-8") as f:
-            f.write(fn(u))
+    write_pair(OUT, "activite.svg", activity(u))
     print("Graphiques générés dans", OUT)
 
 

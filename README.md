@@ -1,9 +1,9 @@
-<img src="./assets/header.svg" width="100%" alt="Adam Hassen, Data Scientist et ingénieur IHM en formation. Double diplôme d'ingénieur ESPRIT et ENSIM. Stage de fin d'études de 6 mois en Data et IA, disponible en mars 2027."/>
+<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/header-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/header-light.svg"/><img src="./assets/header-light.svg" width="100%" alt="Adam Hassen, Data Scientist et ingénieur IHM en formation. Double diplôme d'ingénieur ESPRIT et ENSIM. Stage de fin d'études de 6 mois en Data et IA, disponible en mars 2027."/></picture>
 
 <p align="center">
-  <a href="mailto:adam.hassen941@gmail.com"><img src="https://img.shields.io/badge/adam.hassen941@gmail.com-2F5BEA?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
-  <a href="https://www.linkedin.com/in/adam-hassen-06922b170/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
-  <a href="https://huggingface.co/adam5858"><img src="https://img.shields.io/badge/Hugging%20Face-FFB000?style=for-the-badge&logo=huggingface&logoColor=white" alt="Hugging Face"/></a>
+  <a href="mailto:adam.hassen941@gmail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/btn-mail-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/btn-mail-light.svg"/><img src="./assets/btn-mail-light.svg"  alt="Écrire à adam.hassen941@gmail.com" height="44"/></picture></a>&nbsp;
+  <a href="https://www.linkedin.com/in/adam-hassen-06922b170/"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/btn-linkedin-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/btn-linkedin-light.svg"/><img src="./assets/btn-linkedin-light.svg"  alt="LinkedIn" height="44"/></picture></a>&nbsp;
+  <a href="https://huggingface.co/adam5858"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/btn-hf-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/btn-hf-light.svg"/><img src="./assets/btn-hf-light.svg"  alt="Hugging Face" height="44"/></picture></a>
 </p>
 
 <br/>
@@ -16,23 +16,23 @@ Je cherche un **stage de fin d'études de 6 mois en Data Science, Machine Learni
 
 ## Parcours
 
-<img src="./assets/parcours.svg" width="100%" alt="Expérience : associé technique chez LinqCe (2025–2026), stage ingénieur chez Vermeg (2024–2025), stage chez Aman Bank (2023–2024). Formation : ENSIM, Le Mans Université (2025–2027), ESPRIT, Tunis (2021–2026)."/>
+<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/parcours-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/parcours-light.svg"/><img src="./assets/parcours-light.svg" width="100%" alt="Expérience : associé technique chez LinqCe (2025–2026), stage ingénieur chez Vermeg (2024–2025), stage chez Aman Bank (2023–2024). Formation : ENSIM, Le Mans Université (2025–2027), ESPRIT, Tunis (2021–2026)."/></picture>
 
 <br/>
 
 ## Projets
 
 <p>
-  <a href="https://github.com/adam-hassen/assuria-projet"><img src="./assets/projet-assuria.svg" width="49%" alt="AssurIA : offres d'assurance personnalisées par un petit LLM, conseiller RAG et prédiction du coût des sinistres"/></a>
-  <a href="https://github.com/adam-hassen/stock-auto-update"><img src="./assets/projet-stock.svg" width="49%" alt="Stock Auto Update : pipeline automatisé de données boursières et d'analyse de sentiment"/></a>
+  <a href="https://github.com/adam-hassen/assuria-projet"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/projet-assuria-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/projet-assuria-light.svg"/><img src="./assets/projet-assuria-light.svg" width="49%" alt="AssurIA : offres d'assurance personnalisées par un petit LLM, conseiller RAG et prédiction du coût des sinistres"/></picture></a>
+  <a href="https://github.com/adam-hassen/stock-auto-update"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/projet-stock-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/projet-stock-light.svg"/><img src="./assets/projet-stock-light.svg" width="49%" alt="Stock Auto Update : pipeline automatisé de données boursières et d'analyse de sentiment"/></picture></a>
 </p>
 <p>
-  <a href="https://github.com/adam-hassen/EEG"><img src="./assets/projet-eeg.svg" width="49%" alt="Charge cognitive EEG : estimation de la charge cognitive d'un conducteur"/></a>
-  <a href="https://github.com/adam-hassen/neuron-forge"><img src="./assets/projet-neuron.svg" width="49%" alt="Neuron Forge : jeu pédagogique sous Unreal Engine 5"/></a>
+  <a href="https://github.com/adam-hassen/EEG"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/projet-eeg-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/projet-eeg-light.svg"/><img src="./assets/projet-eeg-light.svg" width="49%" alt="Charge cognitive EEG : estimation de la charge cognitive d'un conducteur"/></picture></a>
+  <a href="https://github.com/adam-hassen/neuron-forge"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/projet-neuron-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/projet-neuron-light.svg"/><img src="./assets/projet-neuron-light.svg" width="49%" alt="Neuron Forge : jeu pédagogique sous Unreal Engine 5"/></picture></a>
 </p>
 <p>
-  <a href="https://github.com/adam-hassen/Projet_AR"><img src="./assets/projet-ar.svg" width="49%" alt="AR-Secours : réalité augmentée pour les premiers secours"/></a>
-  <a href="https://github.com/adam-hassen/Mobile"><img src="./assets/projet-budget.svg" width="49%" alt="MonBudget : application Android de gestion de budget"/></a>
+  <a href="https://github.com/adam-hassen/Projet_AR"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/projet-ar-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/projet-ar-light.svg"/><img src="./assets/projet-ar-light.svg" width="49%" alt="AR-Secours : réalité augmentée pour les premiers secours"/></picture></a>
+  <a href="https://github.com/adam-hassen/Mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/projet-budget-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="./assets/projet-budget-light.svg"/><img src="./assets/projet-budget-light.svg" width="49%" alt="MonBudget : application Android de gestion de budget"/></picture></a>
 </p>
 
 <details>
@@ -76,7 +76,4 @@ Je cherche un **stage de fin d'études de 6 mois en Data Science, Machine Learni
 
 ## Activité
 
-<p>
-  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-contributions.svg" width="49%" alt="Contributions GitHub par semaine sur 12 mois"/>
-  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-langages.svg" width="49%" alt="Langages les plus utilisés"/>
-</p>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/activite-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/activite-light.svg"/><img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/activite-light.svg" width="100%" alt="Activité GitHub : contributions par semaine sur 12 mois et langages les plus utilisés"/></picture>
