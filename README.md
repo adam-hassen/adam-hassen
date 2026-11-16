@@ -1,70 +1,74 @@
-<p align="center">
-  <img src="./assets/galaxy-hero.svg" width="100%" alt="Adam Hassen — élève ingénieur Data Science & IHM, double diplôme ESPRIT × ENSIM, stage de fin d'études dès mars 2027"/>
+<img src="./assets/header.svg" width="100%" alt="Adam Hassen, Data Scientist et ingénieur IHM en formation. Double diplôme d'ingénieur ESPRIT et ENSIM. Stage de fin d'études de 6 mois à partir de mars 2027."/>
+
+Élève ingénieur en dernière année d'un double diplôme : **Data Science** à ESPRIT (Tunis) et **Interaction Personnes-Systèmes** à l'ENSIM, Le Mans Université. Je travaille sur toute la chaîne de la donnée, de la collecte à la mise en production de modèles, et je m'intéresse autant aux modèles qu'aux interfaces qui les rendent utiles.
+
+**Je cherche un stage de fin d'études de 6 mois en Data Science, Machine Learning ou NLP, à partir de mars 2027**, en France ou au Canada.
+
+[![Email](https://img.shields.io/badge/adam.hassen941@gmail.com-2F5BEA?style=flat-square&logo=gmail&logoColor=white)](mailto:adam.hassen941@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-2F5BEA?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/adam-hassen-06922b170/)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-2F5BEA?style=flat-square&logo=huggingface&logoColor=white)](https://huggingface.co/adam5858)
+
+<br/>
+
+## Expérience
+
+**Associé technique, LinqCe** &nbsp;·&nbsp; 2025–2026<br/>
+Cofondation d'une plateforme de mise en relation entre indépendants, entreprises, associations et administrations. Intégration de l'IA et développement full-stack.
+
+**Stage ingénieur, Vermeg** (département Assurance) &nbsp;·&nbsp; 2024–2025<br/>
+Tableau de bord de surveillance des logs en temps réel, classification automatique des erreurs et modèle prédictif pour anticiper les incidents et en identifier les causes probables.
+
+**Stage, Aman Bank** &nbsp;·&nbsp; 2023–2024<br/>
+Application web bancaire en Angular et Node.js : authentification, modules, consultation des chèques et des effets.
+
+<br/>
+
+## Projets
+
+| Projet | Description | Technologies |
+| :-- | :-- | :-- |
+| [**AssurIA**](https://github.com/adam-hassen/assuria-projet) | Services d'assurance intelligents : personnalisation des offres avec un petit LLM fine-tuné, conseiller RAG pour l'analyse de contrats, prédiction du coût des sinistres. Projet de recherche appliquée, en cours. | Python, LLM, RAG, ML, PostgreSQL |
+| [**AssurIA, données**](https://github.com/adam-hassen/assuria-donnees) | Collecte automatique des jeux de données européens du projet (sinistres, offres, simulation de prix). | Python, ETL |
+| [**Stock Auto Update**](https://github.com/adam-hassen/stock-auto-update) | Pipeline automatisé de collecte de données boursières et d'analyse de sentiment financier, publié en dataset sur Hugging Face. | Python, FinBERT, GitHub Actions |
+| [**Charge cognitive EEG**](https://github.com/adam-hassen/EEG) | Estimation de la charge cognitive d'un conducteur à partir de signaux EEG (dataset CL-Drive). | Python, traitement du signal, ML |
+| [**Neuron Forge**](https://github.com/adam-hassen/neuron-forge) | Jeu pédagogique en vue subjective où l'on construit, entraîne et valide un réseau de neurones. | C++, Unreal Engine 5 |
+| [**AR-Secours**](https://github.com/adam-hassen/Projet_AR) | Application Android de réalité augmentée pour apprendre les gestes de premiers secours. | C#, Unity, AR Foundation |
+| [**MonBudget**](https://github.com/adam-hassen/Mobile) | Application Android de gestion de budget pour étudiants. | Kotlin, Jetpack Compose, Room |
+| [**Back-office d'édition**](https://github.com/adam-hassen/travail) | Gestion et planification de publication de séries de livres. [Démo](https://travail-two.vercel.app) | Next.js, TypeScript, PostgreSQL |
+| [**Gestion clients et commandes**](https://github.com/adam-hassen/Projet_DevOps) | Application web CRUD avec facturation, conteneurisée et testée en intégration continue. | Flask, MySQL, Docker, CI/CD |
+| [**EcoGardien**](https://github.com/adam-hassen/java-Mad-Lions) | Application desktop de gestion écologique, projet intégré en équipe. | Java, JavaFX, MySQL |
+| [**Chatbot Telegram**](https://github.com/adam-hassen/Chatbot_Telegram_Interop-rabilit-) | Chatbot connecté à plusieurs APIs, avec une IA conversationnelle (Llama 3.3 70B). | Node.js, Express |
+
+<br/>
+
+## Compétences
+
+**Data et IA** : Python, Pandas, NumPy, scikit-learn, TensorFlow, PyTorch, Transformers, NLP, RAG, séries temporelles, Power BI<br/>
+**Développement** : Java, C, C++, C#, .NET, Symfony, Angular, Node.js, Next.js, Kotlin<br/>
+**Données et MLOps** : SQL, PL/SQL, PostgreSQL, Docker, GitHub Actions, Git, Scrum
+
+<p>
+  <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,sklearn,java,cpp,cs,dotnet,angular,nodejs,nextjs,kotlin,postgres,docker,githubactions,unity,unreal&perline=17" alt="Python, PyTorch, TensorFlow, scikit-learn, Java, C++, C#, .NET, Angular, Node.js, Next.js, Kotlin, PostgreSQL, Docker, GitHub Actions, Unity, Unreal Engine"/>
 </p>
 
-<p align="center">
-  <a href="mailto:adam.hassen941@gmail.com"><img src="https://img.shields.io/badge/Me%20contacter-0A0E22?style=for-the-badge&logo=gmail&logoColor=A88BFF" alt="Me contacter"/></a>
-  <a href="https://www.linkedin.com/in/adam-hassen-06922b170/"><img src="https://img.shields.io/badge/LinkedIn-0A0E22?style=for-the-badge&logo=linkedin&logoColor=9DB4FF" alt="LinkedIn"/></a>
-  <a href="https://huggingface.co/adam5858"><img src="https://img.shields.io/badge/Hugging%20Face-0A0E22?style=for-the-badge&logo=huggingface&logoColor=FFD21E" alt="Hugging Face"/></a>
-  <img src="https://komarev.com/ghpvc/?username=adam-hassen&style=for-the-badge&color=6E7BFF&label=VISITES" alt="Visites du profil"/>
-</p>
+<br/>
 
-<img src="./assets/galaxy-h-brief.svg" width="100%" alt="En bref"/>
+## Formation
 
-<p align="center">
-  <img src="./assets/galaxy-brief.svg" width="100%" alt="Je cherche un stage de fin d'études de 6 mois, disponible en mars 2027. Postes visés : Data Scientist, ML Engineer, NLP. Mobilité : France et Canada. Double diplôme d'ingénieur. Contact : adam.hassen941@gmail.com"/>
-</p>
+**ENSIM, Le Mans Université** &nbsp;·&nbsp; 2025–2027<br/>
+Cycle ingénieur en informatique, spécialité Interaction Personnes-Systèmes : UX/UI, DevOps, développement mobile, visualisation, réalité augmentée, machine learning avancé.
 
-<img src="./assets/galaxy-h-parcours.svg" width="100%" alt="Parcours"/>
+**ESPRIT, Tunis** &nbsp;·&nbsp; 2021–2026<br/>
+Cycle ingénieur en informatique, spécialité Data Science : statistiques, séries temporelles, Big Data, machine learning et deep learning.
 
-<p align="center">
-  <img src="./assets/galaxy-parcours.svg" width="100%" alt="ESPRIT 2021–2026 (Data Science), stage Aman Bank 2023–2024, stage Vermeg 2024–2025, associé technique LinqCe 2025–2026, ENSIM 2025–2027 (IHM), puis stage de fin d'études en mars 2027"/>
-</p>
+**Langues** : français courant, anglais professionnel, arabe langue maternelle.
 
-<img src="./assets/galaxy-h-projets.svg" width="100%" alt="Projets"/>
+<br/>
 
-<p align="center">
-  <img src="./assets/galaxy-agent.svg" width="100%" alt="Adam Agent : assistant IA 100 % local sur Mac (Ollama, FastAPI, qwen3:8b)"/>
-</p>
-<p align="center">
-  <img src="./assets/galaxy-assurance.svg" width="49%" alt="Services intelligents pour l'assurance"/>
-  <img src="./assets/galaxy-bourse.svg" width="49%" alt="Prédiction des marchés boursiers : Transformer hybride et FinBERT"/>
-</p>
-<p align="center">
-  <img src="./assets/galaxy-crypto.svg" width="49%" alt="Crypto Due Diligence"/>
-  <img src="./assets/galaxy-vermeg.svg" width="49%" alt="Monitoring prédictif des logs (stage Vermeg)"/>
-</p>
+## Activité
 
-<img src="./assets/galaxy-h-stack.svg" width="100%" alt="Ma constellation technique"/>
-
-<p align="center">
-  <img src="./assets/galaxy-stack.svg" width="100%" alt="Stack : Python, PyTorch, TensorFlow, scikit-learn, Hugging Face, Pandas, Power BI, Streamlit, Java, Spring, Node.js, Next.js, Angular, JavaScript, C++, Flutter, SQL, Docker, Git, CI/CD, MLOps, Jupyter, PL/SQL, Scrum"/>
-</p>
-
-<img src="./assets/galaxy-h-stats.svg" width="100%" alt="Statistiques"/>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-chiffres.svg" width="100%" alt="Statistiques GitHub en chiffres"/>
-</p>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-visites.svg" width="100%" alt="Courbe des visites du profil par jour"/>
-</p>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-courbe.svg" width="100%" alt="Courbe des contributions par semaine"/>
-</p>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-langages.svg" width="49%" alt="Langages les plus utilisés"/>
-  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-activite.svg" width="49%" alt="Activité mensuelle"/>
-</p>
-
-<img src="./assets/galaxy-h-contrib.svg" width="100%" alt="Contributions"/>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/adam-hassen/adam-hassen/output/github-snake-dark.svg"/>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/adam-hassen/adam-hassen/output/github-snake.svg"/>
-  <img alt="Animation des contributions" src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/output/github-snake-dark.svg" width="100%"/>
-</picture>
-
-<p align="center">
-  <a href="mailto:adam.hassen941@gmail.com"><img src="./assets/galaxy-footer.svg" width="100%" alt="Construisons quelque chose ensemble — adam.hassen941@gmail.com"/></a>
+<p>
+  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-contributions.svg" width="49%" alt="Contributions GitHub par semaine sur 12 mois"/>
+  &nbsp;
+  <img src="https://raw.githubusercontent.com/adam-hassen/adam-hassen/stats/stats-langages.svg" width="47%" alt="Langages les plus utilisés"/>
 </p>
